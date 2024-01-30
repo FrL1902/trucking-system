@@ -186,13 +186,13 @@
         <div class="modal-body">
             <form>
                 <div class="form-group" style="padding:0">
-                    <label for="category_id" class="col-form-label" style="font-weight: bold; padding-bottom:0">Kategori<span style="color: red">*</span></label>
+                    <label for="category_id" class="col-form-label" style="font-weight: bold; padding-bottom:0">ID Kategori<span style="color: red">*</span></label>
                     <input type="text" class="form-control form-control" style="border-color: #aaaaaa"
                         placeholder="KTG01" id="category_id"
                         name="supplier">
                 </div>
                 <div class="form-group" style="padding:20px 0px 0px 0px">
-                    <label for="category_name" class="col-form-label" style="font-weight: bold; padding-bottom:0">Model<span style="color: red">*</span></label>
+                    <label for="category_name" class="col-form-label" style="font-weight: bold; padding-bottom:0">Nama Kategori<span style="color: red">*</span></label>
                     <input type="text" class="form-control form-control" style="border-color: #aaaaaa"
                         placeholder="Komputer Rakitan" id="category_name"
                         name="supplier">
