@@ -25,6 +25,8 @@ Route::get('/', function () {
 
 Route::get('/lokasi', [LocationController::class, 'show_location_page']);
 Route::get('/kategori', [CategoryController::class, 'show_category_page']);
+Route::post('/newCategory', [CategoryController::class, 'add_new_category']);
+Route::post('/editCategory', [CategoryController::class, 'edit_category']);
 Route::get('/barang/stok', [CategoryStockController::class, 'show_categoryStock_page']);
 Route::get('/barang/masuk', [BarangMasukController::class, 'show_inactiveItem_page']);
 Route::get('/barang/keluar', [BarangKeluarController::class, 'show_activeItem_page']);
