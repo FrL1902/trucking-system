@@ -136,7 +136,7 @@
 
                 <a href="#" class="logo text-center">
                     {{-- <img src="/assets/img/logoazzara.svg" alt="navbar brand" class="navbar-brand"> --}}
-                    <h2 alt="navbar brand" class="navbar-brand font-weight-bold" style="color: white">Warehouse</h2>
+                    <h2 alt="navbar brand" class="navbar-brand font-weight-bold" style="color: white">IT Inventory</h2>
                 </a>
                 <button class="navbar-toggler sidenav-toggler ml-auto" type="button" data-toggle="collapse"
                     data-target="collapse" aria-expanded="false" aria-label="Toggle navigation">
@@ -195,8 +195,10 @@
                                         <div class="avatar-lg"><img src="../../assets/img/552721 user logo.png"
                                                 alt="image profile" class="avatar-img rounded"></div>
                                         <div class="u-text mt-2">
-                                            <h4>{{ auth()->user()->name }}</h4>
-                                            <p class="text-muted">{{ auth()->user()->email }}</p>
+                                            {{-- <h4>{{ auth()->user()->name }}</h4> --}}
+                                            <h4>name</h4>
+                                            {{-- <p class="text-muted">{{ auth()->user()->email }}</p> --}}
+                                            <p class="text-muted">email</p>
                                             {{-- <a href="profile.html"
                                                 class="btn btn-rounded btn-danger btn-sm">View Profile</a> --}}
                                         </div>
@@ -206,7 +208,7 @@
                                 <div class="dropdown-divider"></div>
                                 {{-- <a class="dropdown-item" href="/creds/{{ auth()->user()->id }}">Change Password</a> --}}
                                 {{-- <a class="dropdown-item" href="/creds/{{ Crypt::encryptString(auth()->user()->id) }}">Change Password</a> --}}
-                                <a class="dropdown-item" href="/creds/{{ encrypt(auth()->user()->id) }}">Change
+                                <a class="dropdown-item" href="#">Change
                                     Password</a>
                                 {{-- <div class="dropdown-divider"></div> --}}
                                 <a class="dropdown-item" href="/logout">Logout</a>
@@ -232,8 +234,9 @@
                         <div class="info">
                             <a data-toggle="collapse" aria-expanded="true">
                                 <span>
-                                    {{ auth()->user()->name }}
-                                    <span class="user-level">Role: {{ auth()->user()->level }}</span>
+                                    {{-- {{ auth()->user()->name }} --}}te
+                                    {{-- <span class="user-level">Role: {{ auth()->user()->level }}</span> --}}
+                                    <span class="user-level">Role: asdfsf</span>
                                 </span>
                             </a>
                             <div class="clearfix"></div>
@@ -244,202 +247,56 @@
                             <a href="/">
                                 <i class="fas fa-home"></i>
                                 <p>Home</p>
-                                {{-- <span class="badge badge-count">5</span> --}}
                             </a>
                         </li>
-                        @if (App\Models\UserPermission::checkMenuCustomer(auth()->user()->name) == true)
-                            <li class="nav-item @yield('managecustomerbutton')">
-                                <a data-toggle="collapse" href="#customer">
-                                    <i class="fa fa-users"></i>
-                                    <p>Kelola Customer</p>
-                                    <span class="caret"></span>
-                                </a>
-                                <div class="collapse @yield('showmanagecustomer')" id="customer">
-                                    <ul class="nav nav-collapse">
-                                        @if (App\Models\UserPermission::checkPageStatusLayout('tambah_customer_baru') == 1)
-                                            <li class="@yield('newcustomer')">
-                                                <a href="/newCustomer">
-                                                    <span class="sub-item">Tambah Customer Baru</span>
-                                                </a>
-                                            </li>
-                                        @endif
-                                        @if (App\Models\UserPermission::checkPageStatusLayout('data_customer') == 1)
-                                            <li class="@yield('managecustomer')">
-                                                <a href="/manageCustomer">
-                                                    <span class="sub-item">Data Customer</span>
-                                                </a>
-                                            </li>
-                                        @endif
-                                    </ul>
-                                </div>
-                            </li>
-                        @endif
-                        @if (App\Models\UserPermission::checkMenuBrand(auth()->user()->name) == true)
-                            <li class="nav-item @yield('managebrandbutton')">
-                                <a data-toggle="collapse" href="#brand">
-                                    <i class="fa fa-th-large"></i>
-                                    <p>Kelola Brand</p>
-                                    <span class="caret"></span>
-                                </a>
-                                <div class="collapse @yield('showmanagebrand')" id="brand">
-                                    <ul class="nav nav-collapse">
-                                        @if (App\Models\UserPermission::checkPageStatusLayout('tambah_brand_baru') == 1)
-                                            <li class="@yield('newbrand')">
-                                                <a href="/newBrand">
-                                                    <span class="sub-item">Tambah Brand Baru</span>
-                                                </a>
-                                            </li>
-                                        @endif
-                                        @if (App\Models\UserPermission::checkPageStatusLayout('data_brand') == 1)
-                                            <li class="@yield('managebrand')">
-                                                <a href="/manageBrand">
-                                                    <span class="sub-item">Data Brand</span>
-                                                </a>
-                                            </li>
-                                        @endif
-                                    </ul>
-                                </div>
-                            </li>
-                        @endif
-                        @if (App\Models\UserPermission::checkMenuBarang(auth()->user()->name) == true)
-                            <li class="nav-item @yield('manageitembutton')">
-                                <a data-toggle="collapse" href="#item">
-                                    <i class="fa fa-truck"></i>
-                                    <p>Kelola Barang</p>
-                                    <span class="caret"></span>
-                                </a>
-                                {{-- color of the pressed button is style="background-color: #f7f7f7" --}}
-                                <div class="collapse @yield('showmanageitem')" id="item">
-                                    <ul class="nav nav-collapse">
-                                        {{-- @if (App\Models\UserPermission::checkPageStatusLayout(Auth::user()->name, 'laporan_stok_by_pcs') == 1) --}}
-                                        @if (App\Models\UserPermission::checkPageStatusLayout('laporan_stok_by_pcs') == 1)
-                                            <li class="@yield('itemreport')">
-                                                <a href="/itemReport">
-                                                    <span class="sub-item">Laporan Stok by pcs</span>
-                                                </a>
-                                            </li>
-                                        @endif
-                                        {{-- @endif --}}
-                                        @if (App\Models\UserPermission::checkPageStatusLayout('tambah_barang_baru') == 1)
-                                            <li class="@yield('newitem')">
-                                                <a href="/newItem">
-                                                    <span class="sub-item">Tambah Barang Baru</span>
-                                                </a>
-                                            </li>
-                                        @endif
-                                        @if (App\Models\UserPermission::checkPageStatusLayout('data_barang') == 1)
-                                            <li class="@yield('manageitem')">
-                                                <a href="/manageItem">
-                                                    <span class="sub-item">Data Barang</span>
-                                                </a>
-                                            </li>
-                                        @endif
-                                        @if (App\Models\UserPermission::checkPageStatusLayout('barang_datang') == 1)
-                                            <li class="@yield('newincoming')">
-                                                <a href="/newIncoming">
-                                                    <span class="sub-item">Barang Datang</span>
-                                                </a>
-                                            </li>
-                                        @endif
-                                        @if (App\Models\UserPermission::checkPageStatusLayout('barang_keluar') == 1)
-                                            <li class="@yield('newoutgoing')">
-                                                <a href="/newOutgoing">
-                                                    <span class="sub-item">Barang Keluar</span>
-                                                </a>
-                                            </li>
-                                        @endif
-                                        @if (App\Models\UserPermission::checkPageStatusLayout('history_stok_by_pcs') == 1)
-                                            <li class="@yield('managehistory')">
-                                                <a href="/manageHistory">
-                                                    <span class="sub-item">History Stok by pcs</span>
-                                                </a>
-                                            </li>
-                                        @endif
-                                    </ul>
-                                </div>
-                            </li>
-                        @endif
-                        @if (App\Models\UserPermission::checkMenuPalet(auth()->user()->name) == true)
-                            <li class="nav-item @yield('managepalletbutton')">
-                                <a data-toggle="collapse" href="#pallet">
-                                    <i class="fa fa-archive"></i>
-                                    <p>Kelola Palet</p>
-                                    <span class="caret"></span>
-                                </a>
-                                {{-- color of the pressed button is style="background-color: #f7f7f7" --}}
-                                <div class="collapse @yield('showmanagepallet')" id="pallet">
-                                    <ul class="nav nav-collapse">
-                                        @if (App\Models\UserPermission::checkPageStatusLayout('laporan_stok_by_palet') == 1)
-                                            <li class="@yield('palletreport')">
-                                                <a href="/palletReport">
-                                                    <span class="sub-item">Laporan Stok by palet</span>
-                                                </a>
-                                            </li>
-                                        @endif
-                                        @if (App\Models\UserPermission::checkPageStatusLayout('palet_masuk') == 1)
-                                            <li class="@yield('inpallet')">
-                                                <a href="/inPallet">
-                                                    <span class="sub-item">Palet Masuk</span>
-                                                </a>
-                                            </li>
-                                        @endif
-                                        @if (App\Models\UserPermission::checkPageStatusLayout('palet_keluar') == 1)
-                                            <li class="@yield('outpallet')">
-                                                <a href="/outPallet">
-                                                    <span class="sub-item">Palet Keluar</span>
-                                                </a>
-                                            </li>
-                                        @endif
-                                        @if (App\Models\UserPermission::checkPageStatusLayout('history_stok_by_palet') == 1)
-                                            <li class="@yield('managepallethistory')">
-                                                <a href="/managePalletHistory">
-                                                    <span class="sub-item">History Stok by palet</span>
-                                                </a>
-                                            </li>
-                                        @endif
-                                    </ul>
-                                </div>
-                            </li>
-                        @endif
-                        @auth
-                            @if (Auth::user()->level == 'admin')
-                                <li class="nav-section">
-                                    <span class="sidebar-mini-icon">
-                                        <i class="fa fa-ellipsis-h"></i>
-                                    </span>
-                                    <h4 class="text-section">KHUSUS ADMIN</h4>
-                                </li>
-                                <li class="nav-item @yield('manageuserbutton')">
-                                    <a data-toggle="collapse" href="#user">
-                                        <i class="fas fa-user"></i>
-                                        <p>Kelola User</p>
-                                        <span class="caret"></span>
-                                    </a>
-                                    {{-- ni jangan lupa buat ganti idnya --}}
-                                    <div class="collapse @yield('showmanageuser')" id="user">
-                                        <ul class="nav nav-collapse">
-                                            <li class="@yield('newuser')">
-                                                <a href="/newUser">
-                                                    <span class="sub-item">Tambah User Baru</span>
-                                                </a>
-                                            </li>
-                                            {{-- <li class="active"> itu pake class active buat nge darken kyk button gt --}}
-                                            <li class="@yield('manageuser')">
-                                                <a href="/manageUser">
-                                                    <span class="sub-item">Data User</span>
-                                                </a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </li>
-                            @endif
-                        @endauth
+                        <li class="nav-item @yield('category')">
+                            <a href="/kategori">
+                                <i class="fas fa-tags"></i>
+                                <p>Kategori</p>
+                            </a>
+                        </li>
+                        <li class="nav-item @yield('location')">
+                            <a href="/lokasi">
+                                <i class="fas fa-map-marker"></i>
+                                <p>Lokasi</p>
+                            </a>
+                        </li>
+                        <li class="nav-item @yield('categoryStock')">
+                            <a href="/barang/stok">
+                                <i class="fa fa-clone"></i>
+                                <p>Data Barang</p>
+                            </a>
+                        </li>
+                        <li class="nav-item @yield('inactiveItem')">
+                            <a href="/barang/masuk">
+                                <i class="fa fa-archive"></i>
+                                <p>Barang Masuk</p>
+                            </a>
+                        </li>
+                        <li class="nav-item @yield('activeItem')">
+                            <a href="/barang/keluar">
+                                <i class="fa fa-arrow-right"></i>
+                                <p>Barang Keluar</p>
+                            </a>
+                        </li>
+                        <li class="nav-item @yield('historyItem')">
+                            <a href="/barang/history">
+                                <i class="fa fa-history"></i>
+                                <p>Sejarah Barang</p>
+                            </a>
+                        </li>
                     </ul>
                 </div>
             </div>
         </div>
-        @yield('content')
-        @include('sweetalert::alert')
+        <div class="main-panel">
+            <div class="content">
+                <div class="page-inner">
+                    @yield('content')
+                </div>
+            </div>
+        </div>
+        {{-- @include('sweetalert::alert') --}}
     </div>
     <!--   Core JS Files   -->
     <script src="/assets/js/core/jquery.3.2.1.min.js"></script>
@@ -461,198 +318,10 @@
     <script>
         $(document).ready(function() {
             $('#add-row').DataTable({
-                //     dom: 'Bfrtip',
-                //     buttons: [
-                //         'copy', 'csv', 'excel', 'pdf', 'print'
-                //     ]
-                //
             });
         });
     </script>
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
-
-    {{-- Add New Brand --}}
-    <script>
-        // kolom: Pemilik Brand
-        $('#customeridforbrand').select2({
-            placeholder: 'Pilih Customer'
-        });
-    </script>
-
-
-    {{-- Add New Item --}}
-    <script>
-        // page: add new item, kolom: Brand Pemilik Barang
-        $('#brandidforitem').select2({
-            placeholder: 'Pilih Brand'
-        });
-    </script>
-
-
-    {{-- Edit Brands --}}
-    <script>
-        // modal + kolom customer
-        $('#customerLabelExportBrand').select2({
-            dropdownParent: $('#exportCustomerBrandModal'),
-            placeholder: 'Pilih Customer'
-        });
-    </script>
-
-
-    {{-- EDIT ITEM --}}
-    <script>
-        // page: Edit Item, kolom: Modal + Kolom Customer
-        $('#customerLabelExport').select2({
-            dropdownParent: $('#exportCustomerItemModal'),
-            placeholder: 'Pilih Customer'
-        });
-    </script>
-    <script>
-        // page: Edit Item, kolom: Modal + kolom brand
-        $('#brandLabelExport').select2({
-            dropdownParent: $('#exportBrandItemModal'),
-            placeholder: 'Pilih Brand'
-        });
-    </script>
-
-
-    {{-- INCOMING PAGE --}}
-    <script>
-        // export by customer
-        $('#customerLabelExportIncoming').select2({
-            dropdownParent: $('#exportIncomingCustomerModal'),
-            placeholder: 'Pilih Customer'
-        });
-    </script>
-    <script>
-        // export by brand
-        $('#brandLabelExportincoming').select2({
-            dropdownParent: $('#exportIncomingBrandModal'),
-            placeholder: 'Pilih Brand'
-        });
-    </script>
-    <script>
-        // export by product
-        $('#itemLabelExportincoming').select2({
-            dropdownParent: $('#exportIncomingItemModal'),
-            placeholder: 'Pilih Barang'
-        });
-    </script>
-    <script>
-        // add new incoming package modal
-        $('#incomingidforitem').select2({
-            dropdownParent: $('#addModalCenter'),
-            placeholder: 'Pilih Barang'
-        });
-    </script>
-
-
-    {{-- OUTGOING PAGE --}}
-    <script>
-        // export by customer di outgoing
-        $('#customerLabelExportoutgoing').select2({
-            dropdownParent: $('#exportOutgoingCustomerModal'),
-            placeholder: 'Pilih Customer'
-        });
-    </script>
-    <script>
-        // export by brand di outgoing
-        $('#brandLabelExportoutgoing').select2({
-            dropdownParent: $('#exportOutgoingBrandModal'),
-            placeholder: 'Pilih Brand'
-        });
-    </script>
-    <script>
-        // export by item di outgoing
-        $('#itemLabelExportoutgoing').select2({
-            dropdownParent: $('#exportOutgoingItemModal'),
-            placeholder: 'Pilih Barang'
-        });
-    </script>
-    <script>
-        // add new outgoing package di outgoing
-        $('#outgoingidforitem').select2({
-            dropdownParent: $('#outModalCenter'),
-            placeholder: 'Pilih Barang'
-        });
-    </script>
-
-
-    {{-- History stok by pcs --}}
-    <script>
-        $('#itemHistoryExport').select2({
-            dropdownParent: $('#exportItemHistorymModal'),
-            placeholder: 'Pilih Barang'
-        });
-    </script>
-
-
-    {{-- Laporan Stok By pcs Page --}}
-    <script>
-        $('#customerIdItemReport').select2({
-            dropdownParent: $('#exportItemReportCustomerModal'),
-            placeholder: 'Pilih Customer'
-        });
-    </script>
-    <script>
-        $('#brandIdItemReport').select2({
-            dropdownParent: $('#exportItemReportBrandModal'),
-            placeholder: 'Pilih Brand'
-        });
-    </script>
-    <script>
-        $('#itemIdItemReport').select2({
-            dropdownParent: $('#exportItemReportItemModal'),
-            placeholder: 'Pilih Barang'
-        });
-    </script>
-
-
-    {{-- IN PALLET --}}
-    <script>
-        $('#itemidforpallet').select2({
-            dropdownParent: $('#addInPalletModal'),
-            placeholder: 'Pilih Barang'
-        });
-    </script>
-
-
-    {{-- PALLET HISTORY PAGE --}}
-    <script>
-        $('#itemPalletHistoryExport').select2({
-            dropdownParent: $('#exportPalletItemHistorymModal'),
-            placeholder: 'Pilih Barang'
-        });
-    </script>
-
-
-    {{-- CUSTOMER REPORT --}}
-    <script>
-        $('#itemIdReportCustomer').select2({
-            dropdownParent: $('#exportItemReportModal')
-        });
-    </script>
-
-
-    {{-- Laporan Stok By palet Page --}}
-    <script>
-        $('#customerIdPalletReport').select2({
-            dropdownParent: $('#exportPalletReportCustomerModal'),
-            placeholder: 'Pilih Customer'
-        });
-    </script>
-    <script>
-        $('#brandIdPalletReport').select2({
-            dropdownParent: $('#exportPalletReportBrandModal'),
-            placeholder: 'Pilih Brand'
-        });
-    </script>
-    <script>
-        $('#itemIdPalletReport').select2({
-            dropdownParent: $('#exportPalletReportItemModal'),
-            placeholder: 'Pilih Barang'
-        });
-    </script>
 
     <script type="text/javascript">
         function showTime() {
