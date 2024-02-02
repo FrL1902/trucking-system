@@ -201,8 +201,8 @@
             var modal = $(this)
 
 
-            modal.find('.modal-title').text('HAPUS BRAND')
-            modal.find('.modal-text').text('Apa anda yakin untuk menghapus brand "' + brand_name + '" ?')
+            modal.find('.modal-title').text('HAPUS KATEGORI "' + brand_id + '"')
+            modal.find('.modal-text').text('Apa anda yakin untuk menghapus kategori "' + brand_name + '" ?')
             modal.find('.deleteBrand').attr('href', '/deleteBrand/' + brand_id_enc)
 
         })
@@ -221,7 +221,7 @@
             var brand_name = button.data('brand_name')
             var modal = $(this)
 
-            modal.find('.modal-title').text('UPDATE BRAND "' + brand_id + '"')
+            modal.find('.modal-title').text('UPDATE KATEGORI "' + brand_id + '"')
             modal.find('.brandIdHidden').attr('value', brand_id)
             modal.find('.test-placeholder').attr('value', brand_name)
 
