@@ -194,7 +194,7 @@
 
 {{-- add pc and laptops --}}
 <div class="modal fade" id="addModalCenterPC" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
+    <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
         <div class="modal-header">
             <h3 class="modal-title" id="exampleModalLabel" style="font-weight: bold">BARANG MASUK</h3>
@@ -204,77 +204,83 @@
         </div>
         <div class="modal-body">
             <form>
-                <div class="form-group" style="padding:0">
-                    <label for="category_id" class="col-form-label" style="font-weight: bold; padding-bottom:0">ID Barang<span style="color: red">*</span></label>
-                    <input type="text" class="form-control form-control" style="border-color: #aaaaaa"
-                        placeholder="KTG01" id="category_id"
-                        name="supplier">
-                </div>
-                <div class="form-group" style="padding:20px 0px 0px 0px">
-                    <label for="category_name" class="col-form-label" style="font-weight: bold; padding-bottom:0">Model<span style="color: red">*</span></label>
-                    <input type="text" class="form-control form-control" style="border-color: #aaaaaa"
-                        placeholder="Komputer Rakitan" id="category_name"
-                        name="supplier">
-                </div>
-                <div class="form-group" style="padding:20px 0px 0px 0px">
-                    <label for="model_name" class="col-form-label" style="font-weight: bold; padding-bottom:0">Keterangan<span style="color: red">*</span></label>
-                    <input type="text" class="form-control form-control" style="border-color: #aaaaaa"
-                        placeholder="Lenovo 80SX" id="model_name"
-                        name="supplier">
-                </div>
-                <div class="form-group" style="padding:20px 0px 0px 0px">
-                    <label for="category_name" class="col-form-label" style="font-weight: bold; padding-bottom:0">Processor<span style="color: red">*</span></label>
-                    <input type="text" class="form-control form-control" style="border-color: #aaaaaa"
-                        placeholder="Komputer Rakitan" id="category_name"
-                        name="supplier">
-                </div>
-                <div class="form-group" style="padding:20px 0px 0px 0px">
-                    <label for="category_name" class="col-form-label" style="font-weight: bold; padding-bottom:0">RAM<span style="color: red">*</span></label>
-                    <input type="text" class="form-control form-control" style="border-color: #aaaaaa"
-                        placeholder="Komputer Rakitan" id="category_name"
-                        name="supplier">
-                </div>
-                <div class="form-group" style="padding:20px 0px 0px 0px">
-                    <label for="category_name" class="col-form-label" style="font-weight: bold; padding-bottom:0">GPU<span style="color: red">*</span></label>
-                    <input type="text" class="form-control form-control" style="border-color: #aaaaaa"
-                        placeholder="Komputer Rakitan" id="category_name"
-                        name="supplier">
-                </div>
-                <div class="form-group" style="padding:20px 0px 0px 0px">
-                    <label for="category_name" class="col-form-label" style="font-weight: bold; padding-bottom:0">Storage<span style="color: red">*</span></label>
-                    <input type="text" class="form-control form-control" style="border-color: #aaaaaa"
-                        placeholder="Komputer Rakitan" id="category_name"
-                        name="supplier">
-                </div>
-                <div class="form-group" style="padding:20px 0px 0px 0px">
-                    <label for="category_name" class="col-form-label" style="font-weight: bold; padding-bottom:0">OS<span style="color: red">*</span></label>
-                    <input type="text" class="form-control form-control" style="border-color: #aaaaaa"
-                        placeholder="Komputer Rakitan" id="category_name"
-                        name="supplier">
-                </div>
-                <div class="form-group" style="padding:20px 0px 0px 0px">
-                    <label for="category_name" class="col-form-label" style="font-weight: bold; padding-bottom:0">License<span style="color: red">*</span></label>
-                    <input type="text" class="form-control form-control" style="border-color: #aaaaaa"
-                        placeholder="Komputer Rakitan" id="category_name"
-                        name="supplier">
-                </div>
-                <div class="form-group" style="padding:20px 0px 0px 0px">
-                    <label for="category_name" class="col-form-label" style="font-weight: bold; padding-bottom:0">Monitor<span style="color: red">*</span></label>
-                    <input type="text" class="form-control form-control" style="border-color: #aaaaaa"
-                        placeholder="Komputer Rakitan" id="category_name"
-                        name="supplier">
-                </div>
-                <div class="form-group" style="padding:20px 0px 0px 0px">
-                    <label for="category_name" class="col-form-label" style="font-weight: bold; padding-bottom:0">Keyboard<span style="color: red">*</span></label>
-                    <input type="text" class="form-control form-control" style="border-color: #aaaaaa"
-                        placeholder="Komputer Rakitan" id="category_name"
-                        name="supplier">
-                </div>
-                <div class="form-group" style="padding:20px 0px 0px 0px">
-                    <label for="category_name" class="col-form-label" style="font-weight: bold; padding-bottom:0">Mouse<span style="color: red">*</span></label>
-                    <input type="text" class="form-control form-control" style="border-color: #aaaaaa"
-                        placeholder="Komputer Rakitan" id="category_name"
-                        name="supplier">
+                <div class="d-flex justify-content-center">
+                    <div style="width:100%">
+                        <div class="form-group" style="padding:0; width:100%; padding:0">
+                            <label for="category_id" class="col-form-label" style="font-weight: bold; padding-bottom:0">ID Barang<span style="color: red">*</span></label>
+                            <input type="text" class="form-control form-control" style="border-color: #aaaaaa"
+                                placeholder="KTG01" id="category_id"
+                                name="supplier">
+                        </div>
+                        <div class="form-group" style="padding:0">
+                            <label for="category_name" class="col-form-label" style="font-weight: bold; padding-bottom:0">RAM<span style="color: red">*</span></label>
+                            <input type="text" class="form-control form-control" style="border-color: #aaaaaa"
+                                placeholder="Komputer Rakitan" id="category_name"
+                                name="supplier">
+                        </div>
+                        <div class="form-group" style="padding:0">
+                            <label for="category_name" class="col-form-label" style="font-weight: bold; padding-bottom:0">GPU<span style="color: red">*</span></label>
+                            <input type="text" class="form-control form-control" style="border-color: #aaaaaa"
+                                placeholder="Komputer Rakitan" id="category_name"
+                                name="supplier">
+                        </div>
+                        <div class="form-group" style="padding:0">
+                            <label for="category_name" class="col-form-label" style="font-weight: bold; padding-bottom:0">Storage<span style="color: red">*</span></label>
+                            <input type="text" class="form-control form-control" style="border-color: #aaaaaa"
+                                placeholder="Komputer Rakitan" id="category_name"
+                                name="supplier">
+                        </div>
+                        <div class="form-group" style="padding:0">
+                            <label for="category_name" class="col-form-label" style="font-weight: bold; padding-bottom:0">OS<span style="color: red">*</span></label>
+                            <input type="text" class="form-control form-control" style="border-color: #aaaaaa"
+                                placeholder="Komputer Rakitan" id="category_name"
+                                name="supplier">
+                        </div>
+                        <div class="form-group" style="padding:0">
+                            <label for="category_name" class="col-form-label" style="font-weight: bold; padding-bottom:0">License<span style="color: red">*</span></label>
+                            <input type="text" class="form-control form-control" style="border-color: #aaaaaa"
+                                placeholder="Komputer Rakitan" id="category_name"
+                                name="supplier">
+                        </div>
+                    </div>
+                    <div style="width:100%">
+                        <div class="form-group" style="width:100%; padding:0">
+                            <label for="category_name" class="col-form-label" style="font-weight: bold; padding-bottom:0">Model<span style="color: red">*</span></label>
+                            <input type="text" class="form-control form-control" style="border-color: #aaaaaa"
+                                placeholder="Komputer Rakitan" id="category_name"
+                                name="supplier">
+                        </div>
+                        <div class="form-group" style="padding:0">
+                            <label for="model_name" class="col-form-label" style="font-weight: bold; padding-bottom:0">Keterangan<span style="color: red">*</span></label>
+                            <input type="text" class="form-control form-control" style="border-color: #aaaaaa"
+                                placeholder="Lenovo 80SX" id="model_name"
+                                name="supplier">
+                        </div>
+                        <div class="form-group" style="padding:0">
+                            <label for="category_name" class="col-form-label" style="font-weight: bold; padding-bottom:0">Processor<span style="color: red">*</span></label>
+                            <input type="text" class="form-control form-control" style="border-color: #aaaaaa"
+                                placeholder="Komputer Rakitan" id="category_name"
+                                name="supplier">
+                        </div>
+                        <div class="form-group" style="padding:0">
+                            <label for="category_name" class="col-form-label" style="font-weight: bold; padding-bottom:0">Monitor<span style="color: red">*</span></label>
+                            <input type="text" class="form-control form-control" style="border-color: #aaaaaa"
+                                placeholder="Komputer Rakitan" id="category_name"
+                                name="supplier">
+                        </div>
+                        <div class="form-group" style="padding:0">
+                            <label for="category_name" class="col-form-label" style="font-weight: bold; padding-bottom:0">Keyboard<span style="color: red">*</span></label>
+                            <input type="text" class="form-control form-control" style="border-color: #aaaaaa"
+                                placeholder="Komputer Rakitan" id="category_name"
+                                name="supplier">
+                        </div>
+                        <div class="form-group" style="padding:0">
+                            <label for="category_name" class="col-form-label" style="font-weight: bold; padding-bottom:0">Mouse<span style="color: red">*</span></label>
+                            <input type="text" class="form-control form-control" style="border-color: #aaaaaa"
+                                placeholder="Komputer Rakitan" id="category_name"
+                                name="supplier">
+                        </div>
+                    </div>
                 </div>
             </form>
         </div>
