@@ -36,9 +36,10 @@
                     <table id="add-row" class="display table table-striped table-hover">
                         <thead>
                             <tr>
-                                <th>Kategori</th>
+                                <th>ID Model</th>
                                 <th>Model</th>
-                                <th>SN</th>
+                                <th>Kategori</th>
+                                {{-- <th>SN</th> --}}
                                 <th>Stok</th>
                                 <th style="width: 6%">Info</th>
                                 <th style="width: 6%">Edit</th>
@@ -46,9 +47,10 @@
                         </thead>
                         <tfoot>
                             <tr>
-                                <th>Kategori</th>
+                                <th>ID Model</th>
                                 <th>Model</th>
-                                <th>SN</th>
+                                <th>Kategori</th>
+                                {{-- <th>SN</th> --}}
                                 <th>Stok</th>
                                 <th style="width: 6%">Info</th>
                                 <th style="width: 6%">Edit</th>
@@ -182,7 +184,7 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
         <div class="modal-header">
-            <h3 class="modal-title" id="exampleModalLabel" style="font-weight: bold">KATEGORI BARU</h3>
+            <h3 class="modal-title" id="exampleModalLabel" style="font-weight: bold">DATA BARANG BARU</h3>
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
             </button>
@@ -201,73 +203,20 @@
                         placeholder="Lenovo 80SX" id="model_name"
                         name="supplier">
                 </div>
-                <div class="form-group" style="padding:20px 0px 0px 0px">
+                {{-- <div class="form-group" style="padding:20px 0px 0px 0px">
                     <label for="sn" class="col-form-label" style="font-weight: bold; padding-bottom:0">SN<span style="color: red">*</span></label>
                     <input type="text" class="form-control form-control" style="border-color: #aaaaaa"
                         placeholder="5XABCDEF" id="sn"
                         name="supplier">
-                </div>
+                </div> --}}
             </form>
         </div>
             <div class="modal-footer">
                 {{-- <button type="button" class="btn btn-secondary" data-dismiss="modal">Tidak</button> --}}
-                <button type="button" class="btn btn-primary">Insert Data</button>
+                <button type="submit" class="btn btn-primary">Insert Data</button>
             </div>
         </div>
     </div>
 </div>
-
-{{-- ADD STOCK MODAL --}}
-<div class="modal fade" id="addModalCentera" tabindex="-1" role="dialog"
-aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-<div class="modal-dialog modal-dialog-centered" role="document">
-    <div class="modal-content">
-        <div class="modal-header">
-            <h3 class="modal-title" id="exampleModalLongTitle">
-                <strong>
-                    TAMBAHKAN KATEGORI BARU
-                </strong>
-            </h3>
-            <button id="addIncomingClose" style="display:inline-block" type="button" class="close" data-dismiss="modal"
-                aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-            </button>
-        </div>
-        <form enctype="multipart/form-data" method="post" action="/addItemStock">
-            @csrf
-            <div class="modal-body" style="padding:0">
-
-                <div class="card-body">
-                    <div class="form-group">
-                        <label for="supplier" style="font-weight: bold">ID<span style="color: red">
-                                *
-                            </span></label>
-                        <input type="text" class="form-control form-control-sm" style="border-color: #aaaaaa"
-                            placeholder="supplier barang" id="supplier"
-                            name="supplier">
-                    </div>
-
-                    <div class="form-group">
-                        <label for="supplier" style="font-weight: bold">Nama Kategori<span style="color: red">
-                                *
-                            </span></label>
-                        <input type="text" class="form-control form-control-sm" style="border-color: #aaaaaa"
-                            placeholder="supplier barang" id="supplier"
-                            name="supplier">
-                    </div>
-                    <div class="form-group">
-                        <div class="modal-footer">
-                            <button class="btn btn-primary">Export
-                                Data</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </form>
-    </div>
-</div>
-</div>
-
-
 
 @endsection
