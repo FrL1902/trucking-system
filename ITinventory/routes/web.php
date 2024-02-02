@@ -32,6 +32,7 @@ Route::post('/newCategory', [CategoryController::class, 'add_new_category']);
 Route::post('/editCategory', [CategoryController::class, 'edit_category']);
 
 Route::get('/barang/stok', [CategoryStockController::class, 'show_categoryStock_page']);
+Route::post('/barang/stok/newCategoryStock', [CategoryStockController::class, 'add_new_categoryStock']);
 
 Route::get('/barang/masuk', [BarangMasukController::class, 'show_inactiveItem_page']);
 

@@ -41,6 +41,7 @@
                                 <th>Kategori</th>
                                 {{-- <th>SN</th> --}}
                                 <th>Stok</th>
+                                {{-- <th style="width: 11%">gambar</th> --}}
                                 <th style="width: 6%">Info</th>
                                 <th style="width: 6%">Edit</th>
                             </tr>
@@ -52,46 +53,55 @@
                                 <th>Kategori</th>
                                 {{-- <th>SN</th> --}}
                                 <th>Stok</th>
+                                {{-- <th style="width: 11%">gambar</th> --}}
                                 <th style="width: 6%">Info</th>
                                 <th style="width: 6%">Edit</th>
                             </tr>
                         </tfoot>
                         <tbody>
-                            {{-- @foreach ($brand as $brand)
+                            @foreach ($categoryStock as $data)
                                 <tr>
-                                    <td>{{ $brand->customer_name }}</td>
-                                    <td>{{ $brand->brand_id }}</td>
-                                    <td>{{ $brand->brand_name }}</td>
+                                    <td>{{ $data->model_id }}</td>
+                                    <td>{{ $data->model_name }}</td>
+                                    <td>{{ $data->category_id }}</td>
+                                    <td>{{ $data->stok }}</td>
+                                    {{-- <td>
+                                        <a style="cursor: pointer"
+                                            data-target="#imageModalCenter"
+                                            data-toggle="modal"
+                                            data-pic_url="{{ Storage::url($data->gambar) }}"
+                                            data-item_name="{{ $data->item_name }}"
+                                            data-item_date="{{ date_format(date_create($data->arrive_date), 'd-m-Y') }}">
+                                            <img class="rounded mx-auto d-block"
+                                                style="width: 100px; height: 50px; object-fit: cover;"
+                                                src="{{ Storage::url($data->gambar) }}"
+                                                alt="no picture" loading="lazy">
+                                        </a>
+                                    </td>
+                                    <td>{{ Storage::url($data->gambar) }}</td> --}}
+                                    <td></td>
                                     <td>
                                         <div class="d-flex justify-content-center">
                                             <a style="cursor: pointer" data-target="#editModalCenter"
-                                                data-toggle="modal" data-brand_id="{{ $brand->brand_id }}"
-                                                data-brand_name="{{ $brand->brand_name }}">
+                                                data-toggle="modal" data-brand_id="{{ $data->model_id }}"
+                                                data-brand_name="{{ $data->model_name }}">
                                                 <i class="fa fa-edit mt-3 text-primary"
                                                     data-toggle="tooltip"
                                                     data-original-title="Edit Brand"></i>
                                             </a>
-                                            @if ($brand->item_exists == true)
-                                                <a class="ml-3 mb-2" style="cursor: pointer">
-                                                    <i class="fa fa-ban mt-3 text-danger"
-                                                        data-toggle="tooltip"
-                                                        data-original-title="Tidak bisa menghapus Brand karena sudah mempunyai Barang"></i>
-                                                </a>
-                                            @else
-                                                <a class="ml-3 mb-2" style="cursor: pointer"
-                                                    data-target="#deleteModal" data-toggle="modal"
-                                                    data-brand_name="{{ $brand->brand_name }}"
-                                                    data-brand_id="{{ $brand->brand_id }}"
-                                                    data-brand_id_enc="{{ encrypt($brand->brand_id) }}">
-                                                    <i class="fa fa-times mt-3 text-danger"
-                                                        data-toggle="tooltip"
-                                                        data-original-title="Hapus Brand"></i>
-                                                </a>
-                                            @endif
+                                            <a class="ml-3 mb-2" style="cursor: pointer"
+                                                data-target="#deleteModal" data-toggle="modal"
+                                                data-brand_name="{{ $data->model_name }}"
+                                                data-brand_id="{{ $data->model_id }}"
+                                                data-brand_id_enc="{{ encrypt($data->model_id) }}">
+                                                <i class="fa fa-times mt-3 text-danger"
+                                                    data-toggle="tooltip"
+                                                    data-original-title="Hapus Brand"></i>
+                                            </a>
                                         </div>
                                     </td>
                                 </tr>
-                            @endforeach --}}
+                            @endforeach
                         </tbody>
                     </table>
                 </div>
@@ -183,40 +193,62 @@
 <div class="modal fade" id="addModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
-        <div class="modal-header">
-            <h3 class="modal-title" id="exampleModalLabel" style="font-weight: bold">DATA BARANG BARU</h3>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-            </button>
-        </div>
-        <div class="modal-body">
-            <form>
-                <div class="form-group" style="padding:20px 0px 0px 0px">
-                    <label for="category_name" class="col-form-label" style="font-weight: bold; padding-bottom:0">Kategori<span style="color: red">*</span></label>
-                    <input type="text" class="form-control form-control" style="border-color: #aaaaaa"
-                        placeholder="Komputer Rakitan" id="category_name"
-                        name="supplier">
-                </div>
-                <div class="form-group" style="padding:20px 0px 0px 0px">
-                    <label for="model_name" class="col-form-label" style="font-weight: bold; padding-bottom:0">Model<span style="color: red">*</span></label>
-                    <input type="text" class="form-control form-control" style="border-color: #aaaaaa"
-                        placeholder="Lenovo 80SX" id="model_name"
-                        name="supplier">
-                </div>
-                {{-- <div class="form-group" style="padding:20px 0px 0px 0px">
-                    <label for="sn" class="col-form-label" style="font-weight: bold; padding-bottom:0">SN<span style="color: red">*</span></label>
-                    <input type="text" class="form-control form-control" style="border-color: #aaaaaa"
-                        placeholder="5XABCDEF" id="sn"
-                        name="supplier">
-                </div> --}}
-            </form>
-        </div>
-            <div class="modal-footer">
-                {{-- <button type="button" class="btn btn-secondary" data-dismiss="modal">Tidak</button> --}}
-                <button type="submit" class="btn btn-primary">Insert Data</button>
+            <div class="modal-header">
+                <h3 class="modal-title" id="exampleModalLabel" style="font-weight: bold">DATA BARANG BARU</h3>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+                </button>
             </div>
+            <form method="post" enctype="multipart/form-data" action="/barang/stok/newCategoryStock">
+                @csrf
+                <div class="modal-body">
+                    <div class="form-group" style="padding:0">
+                        <label for="category_name" class="col-form-label" style="font-weight: bold; padding-bottom:0">Kategori<span style="color: red">*</span></label>
+                        <select class="form-control"
+                            id="addNewModel" style="border-color: #aaaaaa" data-width="100%"
+                            name="kategori_id" required>
+                            <option></option>
+                            @foreach ($category as $data)
+                                <option value="{{ $data->category_id }}">
+                                    {{ $data->kategori }}
+                                </option>
+                            @endforeach
+                        </select>
+                    </div>
+                    <div class="form-group" style="padding:20px 0px 0px 0px">
+                        <label for="model_id" class="col-form-label" style="font-weight: bold; padding-bottom:0">Model ID<span style="color: red">*</span></label>
+                        <input type="text" class="form-control form-control" style="border-color: #aaaaaa"
+                            placeholder="Lenovo 80SX" id="model_id"
+                            name="model_id">
+                    </div>
+                    <div class="form-group" style="padding:20px 0px 0px 0px">
+                        <label for="model_name" class="col-form-label" style="font-weight: bold; padding-bottom:0">Model<span style="color: red">*</span></label>
+                        <input type="text" class="form-control form-control" style="border-color: #aaaaaa"
+                            placeholder="Lenovo 80SX" id="model_name"
+                            name="model_name">
+                    </div>
+                    <div class="form-group" style="padding:20px 0px 0px 0px">
+                        <label for="model_name" class="col-form-label" style="font-weight: bold; padding-bottom:0">Gambar<span style="color: red">*</span></label>
+                        <input type="file"
+                            class="form-control form-control" style="border-color: #aaaaaa"
+                            id="itemImage" name="itemImage">
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-primary">Insert Data</button>
+                </div>
+            </form>
         </div>
     </div>
 </div>
 
+@endsection
+
+@section('script')
+    <script>
+        $('#addNewModel').select2({
+            dropdownParent: $('#addModalCenter'),
+            placeholder: 'Pilih Kategori'
+        });
+    </script>
 @endsection
