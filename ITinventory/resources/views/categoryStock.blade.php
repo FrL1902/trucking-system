@@ -87,7 +87,7 @@
                                                 data-brand_name="{{ $data->model_name }}">
                                                 <i class="fa fa-edit mt-3 text-primary"
                                                     data-toggle="tooltip"
-                                                    data-original-title="Edit Brand"></i>
+                                                    data-original-title="Edit Data"></i>
                                             </a>
                                             <a class="ml-3 mb-2" style="cursor: pointer"
                                                 data-target="#deleteModal" data-toggle="modal"
@@ -96,7 +96,7 @@
                                                 data-brand_id_enc="{{ encrypt($data->model_id) }}">
                                                 <i class="fa fa-times mt-3 text-danger"
                                                     data-toggle="tooltip"
-                                                    data-original-title="Hapus Brand"></i>
+                                                    data-original-title="Hapus Data"></i>
                                             </a>
                                         </div>
                                     </td>
@@ -218,7 +218,7 @@
                     <div class="form-group" style="padding:20px 0px 0px 0px">
                         <label for="model_id" class="col-form-label" style="font-weight: bold; padding-bottom:0">Model ID<span style="color: red">*</span></label>
                         <input type="text" class="form-control form-control" style="border-color: #aaaaaa"
-                            placeholder="Lenovo 80SX" id="model_id"
+                            placeholder="LNV01" id="model_id"
                             name="model_id">
                     </div>
                     <div class="form-group" style="padding:20px 0px 0px 0px">
