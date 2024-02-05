@@ -35,6 +35,7 @@ Route::get('/barang/stok', [CategoryStockController::class, 'show_categoryStock_
 Route::post('/barang/stok/newCategoryStock', [CategoryStockController::class, 'add_new_categoryStock']);
 
 Route::get('/barang/masuk', [BarangMasukController::class, 'show_inactiveItem_page']);
+Route::post('/barang/masuk/newMasuk', [BarangMasukController::class, 'add_new_barang_masuk']);
 
 Route::get('/barang/keluar', [BarangKeluarController::class, 'show_activeItem_page']);
 

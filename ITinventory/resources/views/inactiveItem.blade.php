@@ -52,6 +52,7 @@
                                 <th style="width: 16%">ID Barang</th>
                                 <th>Kategori</th>
                                 <th>Model</th>
+                                <th>Stok</th>
                                 <th>Keterangan</th>
                                 <th style="width: 6%">Info</th>
                                 <th style="width: 6%">Edit</th>
@@ -62,47 +63,34 @@
                                 <th style="width: 16%">ID Barang</th>
                                 <th>Kategori</th>
                                 <th>Model</th>
+                                <th>Stok</th>
                                 <th>Keterangan</th>
                                 <th style="width: 6%">Info</th>
                                 <th style="width: 6%">Edit</th>
                             </tr>
                         </tfoot>
                         <tbody>
-                            {{-- @foreach ($brand as $brand)
+                            @foreach ($barangMasuk as $data)
                                 <tr>
-                                    <td>{{ $brand->customer_name }}</td>
-                                    <td>{{ $brand->brand_id }}</td>
-                                    <td>{{ $brand->brand_name }}</td>
-                                    <td>
+                                    <td>{{ $data->masuk_id }}</td>
+                                    <td>{{ $data->model_id }}</td>
+                                    <td>{{ $data->model_id }}</td>
+                                    <td>{{ $data->stok }}</td>
+                                    <td>{{ $data->keterangan }}</td>
+                                    <td>@if ($data->is_pc)
+                                        {{-- <i class="fa fa-info-circle" aria-hidden="true"></i> --}}
+
                                         <div class="d-flex justify-content-center">
-                                            <a style="cursor: pointer" data-target="#editModalCenter"
-                                                data-toggle="modal" data-brand_id="{{ $brand->brand_id }}"
-                                                data-brand_name="{{ $brand->brand_name }}">
-                                                <i class="fa fa-edit mt-3 text-primary"
+                                            <a href="#">
+                                                <i class="fa fa-info-circle mt-1 text-primary"
                                                     data-toggle="tooltip"
-                                                    data-original-title="Edit Brand"></i>
+                                                    data-original-title="Detail"></i>
                                             </a>
-                                            @if ($brand->item_exists == true)
-                                                <a class="ml-3 mb-2" style="cursor: pointer">
-                                                    <i class="fa fa-ban mt-3 text-danger"
-                                                        data-toggle="tooltip"
-                                                        data-original-title="Tidak bisa menghapus Brand karena sudah mempunyai Barang"></i>
-                                                </a>
-                                            @else
-                                                <a class="ml-3 mb-2" style="cursor: pointer"
-                                                    data-target="#deleteModal" data-toggle="modal"
-                                                    data-brand_name="{{ $brand->brand_name }}"
-                                                    data-brand_id="{{ $brand->brand_id }}"
-                                                    data-brand_id_enc="{{ encrypt($brand->brand_id) }}">
-                                                    <i class="fa fa-times mt-3 text-danger"
-                                                        data-toggle="tooltip"
-                                                        data-original-title="Hapus Brand"></i>
-                                                </a>
-                                            @endif
                                         </div>
-                                    </td>
+                                    @endif</td>
+                                    <td></td>
                                 </tr>
-                            @endforeach --}}
+                            @endforeach
                         </tbody>
                     </table>
                 </div>
@@ -196,98 +184,140 @@
 <div class="modal fade" id="addModalCenterPC" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
-        <div class="modal-header">
-            <h3 class="modal-title" id="exampleModalLabel" style="font-weight: bold">BARANG MASUK</h3>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-            </button>
-        </div>
-        <div class="modal-body">
-            <form>
-                <div class="d-flex justify-content-center">
-                    <div style="width:100%">
-                        <div class="form-group" style="padding:0; width:100%; padding:0">
-                            <label for="category_id" class="col-form-label" style="font-weight: bold; padding-bottom:0">ID Barang<span style="color: red">*</span></label>
-                            <input type="text" class="form-control form-control" style="border-color: #aaaaaa"
-                                placeholder="KTG01" id="category_id"
-                                name="supplier">
+            <div class="modal-header">
+                <h3 class="modal-title" id="exampleModalLabel" style="font-weight: bold">BARANG MASUK</h3>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form method="post" enctype="multipart/form-data" action="/barang/masuk/newMasuk">
+                @csrf
+                <div class="modal-body">
+                    <div class="d-flex justify-content-center">
+                        <div style="width:100%">
+                            <div class="form-group" style="padding:0 6px 0 0">
+                                <label for="addLocation" class="col-form-label" style="font-weight: bold; padding-bottom:0">Lokasi<span style="color: red">*</span></label>
+                                <select class="form-control"
+                                    id="addLocation" style="border-color: #aaaaaa" data-width="100%"
+                                    name="lokasi_id" required>
+                                    <option></option>
+                                    @foreach ($location as $data)
+                                        <option value="{{ $data->location_id }}">
+                                            {{ $data->lokasi }}
+                                        </option>
+                                    @endforeach
+                                </select>
+                            </div>
+                            <div class="form-group" style="padding:0; width:100%; padding:0 6px 0 0">
+                                <label for="masuk_barang" class="col-form-label" style="font-weight: bold; padding-bottom:0">ID Barang Masuk<span style="color: red">*</span></label>
+                                <input type="text" class="form-control form-control-sm" style="border-color: #aaaaaa;height:31px"
+                                    placeholder="LTP01" id="masuk_barang"
+                                    name="barang_masuk_id">
+                            </div>
+                            <div class="form-group" style="padding:0 6px 0 0">
+                                <label for="processor" class="col-form-label" style="font-weight: bold; padding-bottom:0">Processor<span style="color: red">*</span></label>
+                                <input type="text" class="form-control form-control-sm" style="border-color: #aaaaaa"
+                                    placeholder="Intel Core i3-9100 CPU @ 3.60GHz (4 CPUs), ~3.6GHz" id="processor"
+                                    name="processor">
+                            </div>
+                            <div class="form-group" style="padding:0 6px 0 0">
+                                <label for="ram" class="col-form-label" style="font-weight: bold; padding-bottom:0">RAM<span style="color: red">*</span></label>
+                                <input type="text" class="form-control form-control-sm" style="border-color: #aaaaaa"
+                                    placeholder="2 GB" id="ram"
+                                    name="ram">
+                            </div>
+                            <div class="form-group" style="padding:0 6px 0 0">
+                                <label for="gpu" class="col-form-label" style="font-weight: bold; padding-bottom:0">GPU<span style="color: red">*</span></label>
+                                <input type="text" class="form-control form-control-sm" style="border-color: #aaaaaa"
+                                    placeholder="Intel HD Graphics" id="gpu"
+                                    name="gpu">
+                            </div>
+                            <div class="form-group" style="padding:0 6px 0 0">
+                                <label for="storage" class="col-form-label" style="font-weight: bold; padding-bottom:0">Storage<span style="color: red">*</span></label>
+                                <input type="text" class="form-control form-control-sm" style="border-color: #aaaaaa"
+                                    placeholder="SSD 120 GB" id="storage"
+                                    name="storage">
+                            </div>
+                            <div class="form-group" style="padding:0 6px 0 0">
+                                <label for="keterangan" class="col-form-label" style="font-weight: bold; padding-bottom:0">Keterangan<span style="color: red">*</span></label>
+                                <input type="text" class="form-control form-control-sm" style="border-color: #aaaaaa"
+                                    placeholder="Baik" id="keterangan"
+                                    name="keterangan">
+                            </div>
                         </div>
-                        <div class="form-group" style="padding:0">
-                            <label for="category_name" class="col-form-label" style="font-weight: bold; padding-bottom:0">RAM<span style="color: red">*</span></label>
-                            <input type="text" class="form-control form-control" style="border-color: #aaaaaa"
-                                placeholder="Komputer Rakitan" id="category_name"
-                                name="supplier">
-                        </div>
-                        <div class="form-group" style="padding:0">
-                            <label for="category_name" class="col-form-label" style="font-weight: bold; padding-bottom:0">GPU<span style="color: red">*</span></label>
-                            <input type="text" class="form-control form-control" style="border-color: #aaaaaa"
-                                placeholder="Komputer Rakitan" id="category_name"
-                                name="supplier">
-                        </div>
-                        <div class="form-group" style="padding:0">
-                            <label for="category_name" class="col-form-label" style="font-weight: bold; padding-bottom:0">Storage<span style="color: red">*</span></label>
-                            <input type="text" class="form-control form-control" style="border-color: #aaaaaa"
-                                placeholder="Komputer Rakitan" id="category_name"
-                                name="supplier">
-                        </div>
-                        <div class="form-group" style="padding:0">
-                            <label for="category_name" class="col-form-label" style="font-weight: bold; padding-bottom:0">OS<span style="color: red">*</span></label>
-                            <input type="text" class="form-control form-control" style="border-color: #aaaaaa"
-                                placeholder="Komputer Rakitan" id="category_name"
-                                name="supplier">
-                        </div>
-                        <div class="form-group" style="padding:0">
-                            <label for="category_name" class="col-form-label" style="font-weight: bold; padding-bottom:0">License<span style="color: red">*</span></label>
-                            <input type="text" class="form-control form-control" style="border-color: #aaaaaa"
-                                placeholder="Komputer Rakitan" id="category_name"
-                                name="supplier">
+                        <div style="width:100%">
+                            <div class="form-group" style="padding:0 0 0 6px">
+                                <label for="model_id" class="col-form-label" style="font-weight: bold; padding-bottom:0">Model<span style="color: red">*</span></label>
+                                <select class="form-control"
+                                    id="addModel" style="border-color: #aaaaaa" data-width="100%"
+                                    name="model_id" required>
+                                    <option></option>
+                                    @foreach ($model as $data)
+                                        <option value="{{ $data->model_id }}">
+                                            {{ $data->model_name }}
+                                        </option>
+                                    @endforeach
+                                </select>
+                            </div>
+                            <div class="form-group" style="padding:0 0 0 6px">
+                                <label for="operating_system" class="col-form-label" style="font-weight: bold; padding-bottom:0">OS<span style="color: red">*</span></label>
+                                <input type="text" class="form-control form-control-sm" style="border-color: #aaaaaa"
+                                    placeholder="Windows 10 Pro 64Bit" id="category_name"
+                                    name="operating_system">
+                            </div>
+                            <div class="form-group" style="padding:0 0 0 6px">
+                                <label for="license" class="col-form-label" style="font-weight: bold; padding-bottom:0">License<span style="color: red">*</span></label>
+                                <input type="text" class="form-control form-control-sm" style="border-color: #aaaaaa"
+                                    placeholder="00334-10000-101001-AA350" id="license"
+                                    name="license">
+                            </div>
+                            <div class="form-group" style="padding:0 0 0 6px">
+                                <label for="monitor" class="col-form-label" style="font-weight: bold; padding-bottom:0">Monitor<span style="color: red">*</span></label>
+                                <input type="text" class="form-control form-control-sm" style="border-color: #aaaaaa"
+                                    placeholder="LG Flatron W1953SE" id="monitor"
+                                    name="monitor">
+                            </div>
+                            <div class="form-group" style="padding:0 0 0 6px">
+                                <label for="keyboard" class="col-form-label" style="font-weight: bold; padding-bottom:0">Keyboard<span style="color: red">*</span></label>
+                                <input type="text" class="form-control form-control-sm" style="border-color: #aaaaaa"
+                                    placeholder="Xploner m550" id="keyboard"
+                                    name="keyboard">
+                            </div>
+                            <div class="form-group" style="padding:0 0 0 6px">
+                                <label for="mouse" class="col-form-label" style="font-weight: bold; padding-bottom:0">Mouse<span style="color: red">*</span></label>
+                                <input type="text" class="form-control form-control-sm" style="border-color: #aaaaaa"
+                                    placeholder="Logitech B100" id="mouse"
+                                    name="mouse">
+                            </div>
+                            <div class="form-group" style="padding:0 0 0 6px">
+                                <label for="stok" class="col-form-label" style="font-weight: bold; padding-bottom:0">Stok Masuk<span style="color: red">*</span></label>
+                                <input type="text" class="form-control form-control-sm" style="border-color: #aaaaaa"
+                                    placeholder="1" id="stok"
+                                    name="stok" readonly value=1>
+                            </div>
                         </div>
                     </div>
-                    <div style="width:100%">
-                        <div class="form-group" style="width:100%; padding:0">
-                            <label for="category_name" class="col-form-label" style="font-weight: bold; padding-bottom:0">Model<span style="color: red">*</span></label>
-                            <input type="text" class="form-control form-control" style="border-color: #aaaaaa"
-                                placeholder="Komputer Rakitan" id="category_name"
-                                name="supplier">
+                    <div class="d-flex justify-content-center">
+                        <div style="width:100%">
+                            <div class="form-group" style="padding:0 6px 0 0">
+                                <label for="exampleFormControlFile1" class="col-form-label" style="font-weight: bold; padding-bottom:0">Gambar Barang<span style="color: red">*</span></label>
+                                <input type="file" class="form-control-file" style="height:40px" id="exampleFormControlFile1" name="gambar1">
+                            </div>
                         </div>
-                        <div class="form-group" style="padding:0">
-                            <label for="model_name" class="col-form-label" style="font-weight: bold; padding-bottom:0">Keterangan<span style="color: red">*</span></label>
-                            <input type="text" class="form-control form-control" style="border-color: #aaaaaa"
-                                placeholder="Lenovo 80SX" id="model_name"
-                                name="supplier">
-                        </div>
-                        <div class="form-group" style="padding:0">
-                            <label for="category_name" class="col-form-label" style="font-weight: bold; padding-bottom:0">Processor<span style="color: red">*</span></label>
-                            <input type="text" class="form-control form-control" style="border-color: #aaaaaa"
-                                placeholder="Komputer Rakitan" id="category_name"
-                                name="supplier">
-                        </div>
-                        <div class="form-group" style="padding:0">
-                            <label for="category_name" class="col-form-label" style="font-weight: bold; padding-bottom:0">Monitor<span style="color: red">*</span></label>
-                            <input type="text" class="form-control form-control" style="border-color: #aaaaaa"
-                                placeholder="Komputer Rakitan" id="category_name"
-                                name="supplier">
-                        </div>
-                        <div class="form-group" style="padding:0">
-                            <label for="category_name" class="col-form-label" style="font-weight: bold; padding-bottom:0">Keyboard<span style="color: red">*</span></label>
-                            <input type="text" class="form-control form-control" style="border-color: #aaaaaa"
-                                placeholder="Komputer Rakitan" id="category_name"
-                                name="supplier">
-                        </div>
-                        <div class="form-group" style="padding:0">
-                            <label for="category_name" class="col-form-label" style="font-weight: bold; padding-bottom:0">Mouse<span style="color: red">*</span></label>
-                            <input type="text" class="form-control form-control" style="border-color: #aaaaaa"
-                                placeholder="Komputer Rakitan" id="category_name"
-                                name="supplier">
+                        <div style="width:100%">
+                            <div class="form-group" style="padding:0 0 0 6px">
+                                <label for="exampleFormControlFile2" class="col-form-label" style="font-weight: bold; padding-bottom:0">Gambar Serah Terima<span style="color: red">*</span></label>
+                                <input type="file" class="form-control-file" style="height:40px" id="exampleFormControlFile2" name="gambar2">
+                            </div>
                         </div>
                     </div>
                 </div>
+                <input type="hidden" name="is_pc" value={{true}}>
+                <div class="modal-footer">
+                    {{-- <button type="button" class="btn btn-secondary" data-dismiss="modal">Tidak</button> --}}
+                    <button type="submit" class="btn btn-primary">Insert Data</button>
+                </div>
             </form>
-        </div>
-            <div class="modal-footer">
-                {{-- <button type="button" class="btn btn-secondary" data-dismiss="modal">Tidak</button> --}}
-                <button type="button" class="btn btn-primary">Insert Data</button>
-            </div>
         </div>
     </div>
 </div>
@@ -297,38 +327,83 @@
 <div class="modal fade" id="addModalCenterOther" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
-        <div class="modal-header">
-            <h3 class="modal-title" id="exampleModalLabel" style="font-weight: bold">BARANG MASUK</h3>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-            </button>
-        </div>
-        <div class="modal-body">
-            <form>
-                <div class="form-group" style="padding:0">
-                    <label for="category_id" class="col-form-label" style="font-weight: bold; padding-bottom:0">ID Barang<span style="color: red">*</span></label>
-                    <input type="text" class="form-control form-control" style="border-color: #aaaaaa"
-                        placeholder="KTG01" id="category_id"
-                        name="supplier">
+            <div class="modal-header">
+                <h3 class="modal-title" id="exampleModalLabel" style="font-weight: bold">BARANG MASUK</h3>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form method="post" enctype="multipart/form-data" action="/barang/masuk/newMasuk">
+                @csrf
+                <div class="modal-body">
+                    <div class="form-group" style="padding:0">
+                        {{-- <label for="category_name" class="col-form-label" style="font-weight: bold; padding-bottom:0">Model<span style="color: red">*</span></label>
+                        <input type="text" class="form-control form-control" style="border-color: #aaaaaa"
+                            placeholder="Komputer Rakitan" id="category_name"
+                            name="supplier"> --}}
+                        <label for="model_id" class="col-form-label" style="font-weight: bold; padding-bottom:0">Model<span style="color: red">*</span></label>
+                        <select class="form-control"
+                            id="addModel2" style="border-color: #aaaaaa" data-width="100%"
+                            name="model_id" required>
+                            <option></option>
+                            @foreach ($model as $data)
+                                <option value="{{ $data->model_id }}">
+                                    {{ $data->model_name }}
+                                </option>
+                            @endforeach
+                        </select>
+                    </div>
+                    <div class="form-group" style="padding:20px 0px 0px 0px">
+                        <label for="addLocation" class="col-form-label" style="font-weight: bold; padding-bottom:0">Lokasi<span style="color: red">*</span></label>
+                        <select class="form-control"
+                            id="addLocation2" style="border-color: #aaaaaa" data-width="100%"
+                            name="lokasi_id" required>
+                            <option></option>
+                            @foreach ($location as $data)
+                                <option value="{{ $data->location_id }}">
+                                    {{ $data->lokasi }}
+                                </option>
+                            @endforeach
+                        </select>
+                    </div>
+                    <div class="form-group" style="padding:20px 0px 0px 0px">
+                        <label for="barang_masuk_id" class="col-form-label" style="font-weight: bold; padding-bottom:0">ID Barang Masuk<span style="color: red">*</span></label>
+                        <input type="text" class="form-control form-control" style="border-color: #aaaaaa"
+                            placeholder="KTG01" id="barang_masuk_id"
+                            name="barang_masuk_id">
+                    </div>
+                    <div class="form-group" style="padding:20px 0px 0px 0px">
+                        <label for="stok" class="col-form-label" style="font-weight: bold; padding-bottom:0">Stok Masuk<span style="color: red">*</span></label>
+                        <input type="number" class="form-control form-control" style="border-color: #aaaaaa"
+                            placeholder="Lenovo 80SX" id="stok"
+                            name="stok">
+                    </div>
+                    <div class="form-group" style="padding:20px 0px 0px 0px">
+                        <label for="keterangan" class="col-form-label" style="font-weight: bold; padding-bottom:0">Keterangan<span style="color: red">*</span></label>
+                        <input type="text" class="form-control form-control" style="border-color: #aaaaaa"
+                            placeholder="Lenovo 80SX" id="keterangan"
+                            name="keterangan">
+                    </div>
+                    <div class="d-flex justify-content-center mt-2">
+                        <div style="width:100%">
+                            <div class="form-group" style="padding:0 6px 0 0">
+                                <label for="exampleFormControlFile1" class="col-form-label" style="font-weight: bold; padding-bottom:0">Gambar Barang<span style="color: red">*</span></label>
+                                <input type="file" class="form-control-file" style="height:40px" id="exampleFormControlFile1" name="gambar1">
+                            </div>
+                        </div>
+                        <div style="width:100%">
+                            <div class="form-group" style="padding:0 0 0 6px">
+                                <label for="exampleFormControlFile2" class="col-form-label" style="font-weight: bold; padding-bottom:0">Gambar Serah Terima<span style="color: red">*</span></label>
+                                <input type="file" class="form-control-file" style="height:40px" id="exampleFormControlFile2" name="gambar2">
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <div class="form-group" style="padding:20px 0px 0px 0px">
-                    <label for="category_name" class="col-form-label" style="font-weight: bold; padding-bottom:0">Model<span style="color: red">*</span></label>
-                    <input type="text" class="form-control form-control" style="border-color: #aaaaaa"
-                        placeholder="Komputer Rakitan" id="category_name"
-                        name="supplier">
-                </div>
-                <div class="form-group" style="padding:20px 0px 0px 0px">
-                    <label for="model_name" class="col-form-label" style="font-weight: bold; padding-bottom:0">Keterangan<span style="color: red">*</span></label>
-                    <input type="text" class="form-control form-control" style="border-color: #aaaaaa"
-                        placeholder="Lenovo 80SX" id="model_name"
-                        name="supplier">
+                <input type="hidden" name="is_pc" value={{false}}>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-primary">Insert Data</button>
                 </div>
             </form>
-        </div>
-            <div class="modal-footer">
-                {{-- <button type="button" class="btn btn-secondary" data-dismiss="modal">Tidak</button> --}}
-                <button type="button" class="btn btn-primary">Insert Data</button>
-            </div>
         </div>
     </div>
 </div>
@@ -386,4 +461,28 @@ aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
 
 
 
+@endsection
+
+@section('script')
+    <script>
+        // buat add pc
+        $('#addModel').select2({
+            dropdownParent: $('#addModalCenterPC'),
+            placeholder: 'Pilih Model'
+        });
+        $('#addLocation').select2({
+            dropdownParent: $('#addModalCenterPC'),
+            placeholder: 'Pilih Lokasi'
+        });
+
+        //  buat add aset lain
+        $('#addModel2').select2({
+            dropdownParent: $('#addModalCenterOther'),
+            placeholder: 'Pilih Model'
+        });
+        $('#addLocation2').select2({
+            dropdownParent: $('#addModalCenterOther'),
+            placeholder: 'Pilih Lokasi'
+        });
+    </script>
 @endsection
