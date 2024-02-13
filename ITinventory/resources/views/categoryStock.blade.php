@@ -63,7 +63,7 @@
                                 <tr>
                                     <td>{{ $data->model_id }}</td>
                                     <td>{{ $data->model_name }}</td>
-                                    <td>{{ $data->category_id }}</td>
+                                    <td>{{ $data->category->kategori }}</td>
                                     <td>{{ $data->stok }}</td>
                                     {{-- <td>
                                         <a style="cursor: pointer"

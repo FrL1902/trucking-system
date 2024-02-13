@@ -77,17 +77,18 @@
                                     <td>{{ $data->model_id }}</td>
                                     <td>{{ $data->stok }}</td>
                                     <td>{{ $data->keterangan }}</td>
-                                    <td>@if ($data->is_pc)
-                                        {{-- <i class="fa fa-info-circle" aria-hidden="true"></i> --}}
-
-                                        <div class="d-flex justify-content-center">
-                                            <a href="#">
-                                                <i class="fa fa-info-circle mt-1 text-primary"
-                                                    data-toggle="tooltip"
-                                                    data-original-title="Detail"></i>
-                                            </a>
-                                        </div>
-                                    @endif</td>
+                                    <td>
+                                        {{-- @if ($data->is_pc) --}}
+                                            {{-- <i class="fa fa-info-circle" aria-hidden="true"></i> --}}
+                                            <div class="d-flex justify-content-center">
+                                                <a href="/barang/masuk/detail/{{$data->masuk_id}}">
+                                                    <i class="fa fa-info-circle mt-1 text-primary"
+                                                        data-toggle="tooltip"
+                                                        data-original-title="Detail"></i>
+                                                </a>
+                                            </div>
+                                        {{-- @endif --}}
+                                    </td>
                                     <td></td>
                                 </tr>
                             @endforeach
