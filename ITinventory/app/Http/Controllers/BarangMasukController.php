@@ -44,24 +44,38 @@ class BarangMasukController extends Controller
                 'masuk_id' =>       $request->barang_masuk_id,
                 'model_id' =>       $request->model_id,
                 'location_id' =>    $request->lokasi_id,
-                'Processor' =>      ($request->is_pc) ? $request->processor : '-',
-                'RAM' =>            ($request->is_pc) ? $request->ram : '-',
-                'GPU' =>            ($request->is_pc) ? $request->gpu : '-',
-                'Storage' =>        ($request->is_pc) ? $request->storage : '-',
-                'OS' =>             ($request->is_pc) ? $request->operating_system : '-',
-                'License' =>        ($request->is_pc) ? $request->license : '-',
-                'Monitor' =>        ($request->is_pc) ? $request->monitor : '-',
-                'Keyboard' =>       ($request->is_pc) ? $request->keyboard : '-',
-                'Mouse' =>          ($request->is_pc) ? $request->mouse : '-',
-                'stok' =>           ($request->is_pc) ? 1 : $request->stok,
+                'Processor' => ($request->is_pc) ? $request->processor : '-',
+                'RAM' => ($request->is_pc) ? $request->ram : '-',
+                'GPU' => ($request->is_pc) ? $request->gpu : '-',
+                'Storage' => ($request->is_pc) ? $request->storage : '-',
+                'OS' => ($request->is_pc) ? $request->operating_system : '-',
+                'License' => ($request->is_pc) ? $request->license : '-',
+                'Monitor' => ($request->is_pc) ? $request->monitor : '-',
+                'Keyboard' => ($request->is_pc) ? $request->keyboard : '-',
+                'Mouse' => ($request->is_pc) ? $request->mouse : '-',
+                'stok' => ($request->is_pc) ? 1 : $request->stok,
                 'keterangan' =>     $request->keterangan,
                 'gambar1' =>        $imageName1,
                 'gambar2' =>        $imageName2,
-                'is_pc' =>          ($request->is_pc) ? $request->is_pc : false,
+                'is_pc' => ($request->is_pc) ? $request->is_pc : false,
                 'created_at' =>     Carbon::now(),
+            ]);
+
+            $Stock = CategoryStock::find($request->model_id);
+            $newStock = $Stock->stok + ($request->is_pc) ? 1 : $request->stok;
+            CategoryStock::where('model_id', $request->model_id)->update([
+                'stok' => $newStock,
             ]);
         }
 
         return redirect()->back();
+    }
+
+    public function view_detail_masuk($id)
+    {
+        // dd($id);
+        $detail = BarangMasuk::find($id);
+        // dd($detail);
+        return view('barangmasukdetail', compact('detail'));
     }
 }
