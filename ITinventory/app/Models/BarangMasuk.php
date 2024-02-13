@@ -9,4 +9,8 @@ class BarangMasuk extends Model
 {
     use HasFactory;
     protected $table = 'barang_masuk';
+
+    protected $primaryKey = 'masuk_id';
+    public $incrementing = false;
+    protected $keyType = 'string';
 }
