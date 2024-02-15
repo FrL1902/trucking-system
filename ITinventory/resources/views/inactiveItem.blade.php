@@ -49,24 +49,24 @@
                     <table id="add-row" class="display table table-striped table-hover">
                         <thead>
                             <tr>
-                                <th style="width: 16%">ID Barang</th>
+                                <th style="width: 16%">ID Masuk</th>
                                 <th>Kategori</th>
                                 <th>Model</th>
                                 <th>Stok</th>
                                 <th>Keterangan</th>
                                 <th style="width: 6%">Info</th>
-                                <th style="width: 6%">Edit</th>
+                                <th style="width: 9%">Edit</th>
                             </tr>
                         </thead>
                         <tfoot>
                             <tr>
-                                <th style="width: 16%">ID Barang</th>
+                                <th style="width: 16%">ID Masuk</th>
                                 <th>Kategori</th>
                                 <th>Model</th>
                                 <th>Stok</th>
                                 <th>Keterangan</th>
                                 <th style="width: 6%">Info</th>
-                                <th style="width: 6%">Edit</th>
+                                <th style="width: 9%">Edit</th>
                             </tr>
                         </tfoot>
                         <tbody>
@@ -89,7 +89,34 @@
                                             </div>
                                         {{-- @endif --}}
                                     </td>
-                                    <td></td>
+                                    <td>
+                                        <div class="d-flex justify-content-center">
+                                            <a style="cursor: pointer" data-target="#assignUserModal"
+                                                data-toggle="modal" data-brand_id="{{ $data->masuk_id }}"
+                                                data-brand_name="{{ $data->masuk_id }}"
+                                                data-is_pc="{{ $data->is_pc }}"
+                                                data-stok="{{ $data->stok }}">
+                                                <i class="fa fa-user mt-3 text-primary"
+                                                    data-toggle="tooltip"
+                                                    data-original-title="Assign Barang"></i>
+                                            </a>
+                                            <a class="ml-3 mb-2" style="cursor: pointer" data-target="#editModalCenter"
+                                                data-toggle="modal" data-brand_id="{{ $data->masuk_id }}"
+                                                data-brand_name="{{ $data->masuk_id }}">
+                                                <i class="fa fa-edit mt-3 text-primary"
+                                                    data-toggle="tooltip"
+                                                    data-original-title="Edit Data"></i>
+                                            </a>
+                                            <a class="ml-3 mb-2" style="cursor: pointer"
+                                                data-target="#deleteModal" data-toggle="modal"
+                                                data-brand_name="{{ $data->masuk_id }}"
+                                                data-brand_id="{{ $data->masuk_id }}">
+                                                <i class="fa fa-times mt-3 text-danger"
+                                                    data-toggle="tooltip"
+                                                    data-original-title="Hapus Data"></i>
+                                            </a>
+                                        </div>
+                                    </td>
                                 </tr>
                             @endforeach
                         </tbody>
@@ -157,29 +184,6 @@
         </div>
     </div>
 </div>
-
-<div class="modal fade" id="deleteModal">
-    <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h3 class="modal-title" id="exampleModalLabel" style="font-weight: bold"></h3>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <p class="modal-text"></p>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" id="close-modal"
-                    data-dismiss="modal">Tidak</button>
-                <a href="/deleteBrand/ttt" class="deleteBrand btn btn-danger">YAKIN
-                </a>
-            </div>
-        </div>
-    </div>
-</div>
-
 
 {{-- add pc and laptops --}}
 <div class="modal fade" id="addModalCenterPC" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -388,9 +392,15 @@
                             name="stok">
                     </div>
                     <div class="form-group" style="padding:20px 0px 0px 0px">
+                        <label for="SN" class="col-form-label" style="font-weight: bold; padding-bottom:0">SN<span style="color: red">*</span></label>
+                        <input type="text" class="form-control form-control" style="border-color: #aaaaaa"
+                            placeholder="XRXXXX8R6X" id="SN"
+                            name="SN">
+                    </div>
+                    <div class="form-group" style="padding:20px 0px 0px 0px">
                         <label for="keterangan" class="col-form-label" style="font-weight: bold; padding-bottom:0">Keterangan<span style="color: red">*</span></label>
                         <input type="text" class="form-control form-control" style="border-color: #aaaaaa"
-                            placeholder="Lenovo 80SX" id="keterangan"
+                            placeholder="Baik" id="keterangan"
                             name="keterangan">
                     </div>
                     <div class="d-flex justify-content-center mt-2">
@@ -417,58 +427,79 @@
     </div>
 </div>
 
-{{-- ADD STOCK MODAL --}}
-<div class="modal fade" id="addModalCentera" tabindex="-1" role="dialog"
-aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-<div class="modal-dialog modal-dialog-centered" role="document">
-    <div class="modal-content">
-        <div class="modal-header">
-            <h3 class="modal-title" id="exampleModalLongTitle">
-                <strong>
-                    TAMBAHKAN KATEGORI BARU
-                </strong>
-            </h3>
-            <button id="addIncomingClose" style="display:inline-block" type="button" class="close" data-dismiss="modal"
-                aria-label="Close">
+{{-- assign asset --}}
+<div class="modal fade" id="assignUserModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title" id="exampleModalLabel" style="font-weight: bold">ASSIGN BARANG</h3>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
-            </button>
-        </div>
-        <form enctype="multipart/form-data" method="post" action="/addItemStock">
-            @csrf
-            <div class="modal-body" style="padding:0">
-
-                <div class="card-body">
-                    <div class="form-group">
-                        <label for="supplier" style="font-weight: bold">ID<span style="color: red">
-                                *
-                            </span></label>
-                        <input type="text" class="form-control form-control-sm" style="border-color: #aaaaaa"
-                            placeholder="supplier barang" id="supplier"
-                            name="supplier">
+                </button>
+            </div>
+            <form method="post" enctype="multipart/form-data" action="/barang/masuk/assign">
+                @csrf
+                <div class="modal-body">
+                    <div class="form-group" style="padding:0">
+                        <label for="addLocation" class="col-form-label" style="font-weight: bold; padding-bottom:0">Lokasi<span style="color: red">*</span></label>
+                        <select class="form-control"
+                            id="addLocation3" style="border-color: #aaaaaa" data-width="100%"
+                            name="lokasi_id" required>
+                            <option></option>
+                            @foreach ($location as $data)
+                                <option value="{{ $data->location_id }}">
+                                    {{ $data->lokasi }}
+                                </option>
+                            @endforeach
+                        </select>
                     </div>
-
-                    <div class="form-group">
-                        <label for="supplier" style="font-weight: bold">Nama Kategori<span style="color: red">
-                                *
-                            </span></label>
-                        <input type="text" class="form-control form-control-sm" style="border-color: #aaaaaa"
-                            placeholder="supplier barang" id="supplier"
-                            name="supplier">
+                    <div class="form-group" style="padding:20px 0px 0px 0px">
+                        <label for="keluar_id" class="col-form-label" style="font-weight: bold; padding-bottom:0">ID Barang Keluar<span style="color: red">*</span></label>
+                        <input type="text" class="form-control form-control" style="border-color: #aaaaaa"
+                            placeholder="Budi" id="keluar_id"
+                            name="keluar_id">
                     </div>
-                    <div class="form-group">
-                        <div class="modal-footer">
-                            <button class="btn btn-primary">Export
-                                Data</button>
+                    <div class="form-group" style="padding:20px 0px 0px 0px">
+                        <label for="user" class="col-form-label" style="font-weight: bold; padding-bottom:0">Nama User-PIC<span style="color: red">*</span></label>
+                        <input type="text" class="form-control form-control" style="border-color: #aaaaaa"
+                            placeholder="Budi" id="user"
+                            name="user">
+                    </div>
+                    <div class="form-group" style="padding:20px 0px 0px 0px">
+                        <label for="stok" class="col-form-label" style="font-weight: bold; padding-bottom:0">Stok<span style="color: red">*</span></label>
+                        <input type="number" class="form-control form-control assign-stok" style="border-color: #aaaaaa"
+                            placeholder="1-brp" id="stok"
+                            name="stok">
+                    </div>
+                    <div class="form-group" style="padding:20px 0px 0px 0px">
+                        <label for="keterangan" class="col-form-label" style="font-weight: bold; padding-bottom:0">Keterangan<span style="color: red">*</span></label>
+                        <input type="text" class="form-control form-control" style="border-color: #aaaaaa"
+                            placeholder="Baik" id="keterangan"
+                            name="keterangan">
+                    </div>
+                    <div class="d-flex justify-content-center mt-2">
+                        <div style="width:100%">
+                            <div class="form-group" style="padding:0 6px 0 0">
+                                <label for="exampleFormControlFile1" class="col-form-label" style="font-weight: bold; padding-bottom:0">Gambar Barang<span style="color: red">*</span></label>
+                                <input type="file" class="form-control-file" style="height:40px" id="exampleFormControlFile1" name="gambar1">
+                            </div>
+                        </div>
+                        <div style="width:100%">
+                            <div class="form-group" style="padding:0 0 0 6px">
+                                <label for="exampleFormControlFile2" class="col-form-label" style="font-weight: bold; padding-bottom:0">Gambar Serah Terima<span style="color: red">*</span></label>
+                                <input type="file" class="form-control-file" style="height:40px" id="exampleFormControlFile2" name="gambar2">
+                            </div>
                         </div>
                     </div>
+                    <input type="hidden" class="form-control id_hidden" name="barang_id" value="#">
                 </div>
-            </div>
-        </form>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-primary">Insert Data</button>
+                </div>
+            </form>
+        </div>
     </div>
 </div>
-</div>
-
-
 
 @endsection
 
@@ -493,5 +524,32 @@ aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
             dropdownParent: $('#addModalCenterOther'),
             placeholder: 'Pilih Lokasi'
         });
+
+        // buat assign barang
+        $('#addLocation3').select2({
+            dropdownParent: $('#assignUserModal'),
+            placeholder: 'Pilih Lokasi'
+        });
+
+        $('#assignUserModal').on('show.bs.modal', function(event) {
+            var button = $(event.relatedTarget)
+            var brand_id = button.data('brand_id')
+            var brand_name = button.data('brand_name')
+            let is_pc = button.data('is_pc')
+            let stok = button.data('stok')
+            var modal = $(this)
+
+            modal.find('.modal-title').text('ASSIGN BARANG "' + brand_id + '"')
+            modal.find('.id_hidden').attr('value', brand_id)
+            if(is_pc)
+            {
+                modal.find('.assign-stok').attr('min', 1)
+                modal.find('.assign-stok').attr('max', 1)
+            } else {
+                modal.find('.assign-stok').attr('min', 1)
+                modal.find('.assign-stok').attr('max', stok)
+            }
+
+        })
     </script>
 @endsection

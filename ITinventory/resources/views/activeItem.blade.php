@@ -36,7 +36,7 @@
                     <table id="add-row" class="display table table-striped table-hover">
                         <thead>
                             <tr>
-                                <th style="width: 16%">ID Barang</th>
+                                <th style="width: 16%">ID Keluar</th>
                                 <th>Kategori</th>
                                 <th>Model</th>
                                 <th>Pengguna</th>
@@ -48,10 +48,10 @@
                         </thead>
                         <tfoot>
                             <tr>
-                                <th style="width: 16%">ID Barang</th>
+                                <th style="width: 16%">ID Keluar</th>
                                 <th>Kategori</th>
                                 <th>Model</th>
-                                <th>Pengguna</th>
+                                <th>User PIC</th>
                                 <th>Lokasi</th>
                                 <th>Keterangan</th>
                                 <th style="width: 6%">Info</th>
@@ -59,41 +59,48 @@
                             </tr>
                         </tfoot>
                         <tbody>
-                            {{-- @foreach ($brand as $brand)
+                            @foreach ($barangKeluar as $data)
                                 <tr>
-                                    <td>{{ $brand->customer_name }}</td>
-                                    <td>{{ $brand->brand_id }}</td>
-                                    <td>{{ $brand->brand_name }}</td>
+                                    <td>{{ $data->keluar_id }}</td>
+                                    <td>{{ $data->model_id }}</td>
+                                    <td>{{ $data->model_id }}</td>
+                                    <td>{{ $data->assigned_user }}</td>
+                                    <td>{{ $data->location_id }}</td>
+                                    <td>{{ $data->keterangan }}</td>
+                                    <td>
+                                        {{-- @if ($data->is_pc) --}}
+                                            {{-- <i class="fa fa-info-circle" aria-hidden="true"></i> --}}
+                                            <div class="d-flex justify-content-center">
+                                                <a href="/barang/keluar/detail/{{$data->keluar_id}}">
+                                                    <i class="fa fa-info-circle mt-1 text-primary"
+                                                        data-toggle="tooltip"
+                                                        data-original-title="Detail"></i>
+                                                </a>
+                                            </div>
+                                        {{-- @endif --}}
+                                    </td>
                                     <td>
                                         <div class="d-flex justify-content-center">
                                             <a style="cursor: pointer" data-target="#editModalCenter"
-                                                data-toggle="modal" data-brand_id="{{ $brand->brand_id }}"
-                                                data-brand_name="{{ $brand->brand_name }}">
-                                                <i class="fa fa-edit mt-3 text-primary"
+                                                data-toggle="modal" data-brand_id="{{ $data->keluar_id }}"
+                                                data-brand_name="{{ $data->keluar_id }}">
+                                                <i class="fa fa-edit text-primary"
                                                     data-toggle="tooltip"
-                                                    data-original-title="Edit Brand"></i>
+                                                    data-original-title="Edit Data"></i>
                                             </a>
-                                            @if ($brand->item_exists == true)
-                                                <a class="ml-3 mb-2" style="cursor: pointer">
-                                                    <i class="fa fa-ban mt-3 text-danger"
-                                                        data-toggle="tooltip"
-                                                        data-original-title="Tidak bisa menghapus Brand karena sudah mempunyai Barang"></i>
-                                                </a>
-                                            @else
-                                                <a class="ml-3 mb-2" style="cursor: pointer"
-                                                    data-target="#deleteModal" data-toggle="modal"
-                                                    data-brand_name="{{ $brand->brand_name }}"
-                                                    data-brand_id="{{ $brand->brand_id }}"
-                                                    data-brand_id_enc="{{ encrypt($brand->brand_id) }}">
-                                                    <i class="fa fa-times mt-3 text-danger"
-                                                        data-toggle="tooltip"
-                                                        data-original-title="Hapus Brand"></i>
-                                                </a>
-                                            @endif
+                                            <a class="ml-3" style="cursor: pointer" data-target="#assignUserModal"
+                                                data-toggle="modal" data-brand_id="{{ $data->keluar_id }}"
+                                                data-brand_name="{{ $data->keluar_id }}"
+                                                data-is_pc="{{ $data->is_pc }}"
+                                                data-stok="{{ $data->stok }}">
+                                                <i class="fa fa-arrow-circle-down text-primary"
+                                                    data-toggle="tooltip"
+                                                    data-original-title="Simpan Barang"></i>
+                                            </a>
                                         </div>
                                     </td>
                                 </tr>
-                            @endforeach --}}
+                            @endforeach
                         </tbody>
                     </table>
                 </div>
