@@ -54,6 +54,7 @@ class BarangMasukController extends Controller
                 'Keyboard' => ($request->is_pc) ? $request->keyboard : '-',
                 'Mouse' => ($request->is_pc) ? $request->mouse : '-',
                 'stok' => ($request->is_pc) ? 1 : $request->stok,
+                'SN' => ($request->SN) ? $request->SN : '-', #NI ngecek kalo ada SN ato ngga, kalo ngga ya diganti jadi -
                 'keterangan' =>     $request->keterangan,
                 'gambar1' =>        $imageName1,
                 'gambar2' =>        $imageName2,

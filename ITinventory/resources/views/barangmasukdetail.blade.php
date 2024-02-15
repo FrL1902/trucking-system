@@ -94,6 +94,11 @@
                             aria-label="Disabled input example" disabled>
                     </div>
                     <div class="form-group">
+                        <label for="largeInput">SN</label>
+                        <input class="form-control" type="text" placeholder="{{ $detail->SN }}"
+                            aria-label="Disabled input example" disabled>
+                    </div>
+                    <div class="form-group">
                         <label for="largeInput">Tanggal Dimasukkan Sistem</label>
                         <input class="form-control" type="text" placeholder="{{ $detail->created_at }}"
                             aria-label="Disabled input example" disabled>

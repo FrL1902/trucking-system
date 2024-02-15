@@ -240,10 +240,10 @@
                                     name="storage">
                             </div>
                             <div class="form-group" style="padding:0 6px 0 0">
-                                <label for="keterangan" class="col-form-label" style="font-weight: bold; padding-bottom:0">Keterangan<span style="color: red">*</span></label>
+                                <label for="SN" class="col-form-label" style="font-weight: bold; padding-bottom:0">SN<span style="color: red">*</span></label>
                                 <input type="text" class="form-control form-control-sm" style="border-color: #aaaaaa"
-                                    placeholder="Baik" id="keterangan"
-                                    name="keterangan">
+                                    placeholder="XRXXXX8R6X" id="SN"
+                                    name="SN">
                             </div>
                         </div>
                         <div style="width:100%">
@@ -296,6 +296,14 @@
                                     placeholder="1" id="stok"
                                     name="stok" readonly value=1>
                             </div>
+                        </div>
+                    </div>
+                    <div class="d-flex justify-content-center">
+                        <div style="width:100%">
+                            <label for="keterangan" class="col-form-label" style="font-weight: bold; padding-bottom:0">Keterangan<span style="color: red">*</span></label>
+                            <input type="text" class="form-control form-control-sm" style="border-color: #aaaaaa"
+                                placeholder="Baik" id="keterangan"
+                                name="keterangan">
                         </div>
                     </div>
                     <div class="d-flex justify-content-center">

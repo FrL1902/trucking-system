@@ -29,6 +29,7 @@ class CreateBarangMasuksTable extends Migration
             $table->string('Keyboard'); #
             $table->string('Mouse'); #
             $table->integer('stok')->default('0'); #
+            $table->string('SN'); #
             $table->string('keterangan'); #
             $table->string('gambar1'); #
             $table->string('gambar2'); #
