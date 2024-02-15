@@ -41,6 +41,7 @@ Route::post('/barang/masuk/assign', [BarangMasukController::class, 'assign_baran
 
 Route::get('/barang/keluar', [BarangKeluarController::class, 'show_activeItem_page']);
 Route::get('/barang/keluar/detail/{id}', [BarangKeluarController::class, 'view_detail_keluar']);
+Route::post('/barang/keluar/simpan', [BarangKeluarController::class, 'simpan_barang_keluar']);
 
 Route::get('/barang/history', [HistoryItemController::class, 'show_historyItem_page']);
 
