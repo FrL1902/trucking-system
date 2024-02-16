@@ -21,16 +21,6 @@
 <div class="row">
     <div class="col-md-12">
         <div class="card">
-
-
-            <div class="card-header">
-                <div class="d-flex align-items-center">
-                    {{-- <h4 class="card-title">Barang Keluar</h4> --}}
-                    {{-- <button type="button" class="btn btn-primary ml-3 mr-3" data-target="#addModalCenter" data-toggle="modal"><strong>ADD</strong></button> --}}
-                </div>
-            </div>
-
-
             <div class="card-body">
                 <div class="table-responsive">
                     <table id="add-row" class="display table table-striped table-hover">
