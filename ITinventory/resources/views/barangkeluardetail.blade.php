@@ -109,7 +109,7 @@
                             aria-label="Disabled input example" disabled>
                     </div>
                     <div class="modal-body modal-img">
-                        <label for="largeInput"><strong>GAMBAR BARANG MASUK</strong></label>
+                        <label for="largeInput"><strong>GAMBAR BARANG KELUAR</strong></label>
                         <img class="img-place rounded mx-auto d-block" style=""
                             src="{{ Storage::url($detail->gambar1) }}" alt="no picture" loading="lazy">
                     </div>
