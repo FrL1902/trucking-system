@@ -21,71 +21,94 @@
 <div class="row">
     <div class="col-md-12">
         <div class="card">
-
-
-            <div class="card-header">
-                <div class="d-flex align-items-center">
-                    {{-- <h4 class="card-title">Barang Keluar</h4> --}}
-                    {{-- <button type="button" class="btn btn-primary ml-3 mr-3" data-target="#addModalCenter" data-toggle="modal"><strong>ADD</strong></button> --}}
-                </div>
-            </div>
-
-
             <div class="card-body">
                 <div class="table-responsive">
                     <table id="add-row" class="display table table-striped table-hover">
                         <thead>
                             <tr>
-                                <th style="width: 16%">ID Kategori</th>
-                                <th>Nama Kategori</th>
-                                <th>Model</th>
-                                <th style="width: 6%">Edit</th>
+                                <th style="width: 6%">No.</th>
+                                <th>ID Barang</th>
+                                <th style="width: 8%">Barang</th>
+                                <th>User-PIC</th>
+                                <th>Lokasi</th>
+                                <th>Oleh User</th>
+                                <th>Status</th>
+                                <th style="width: 6%">Info</th>
                             </tr>
                         </thead>
                         <tfoot>
                             <tr>
-                                <th>ID Kategori</th>
-                                <th>Nama Kategori</th>
-                                <th>Model</th>
-                                <th>Edit</th>
+                                <th>Nomor</th>
+                                <th>ID Barang</th>
+                                <th>Barang</th>
+                                <th>User-PIC</th>
+                                <th>Lokasi</th>
+                                <th>Oleh User</th>
+                                <th>Status</th>
+                                <th style="width: 6%">Info</th>
                             </tr>
                         </tfoot>
                         <tbody>
-                            {{-- @foreach ($brand as $brand)
+                            @foreach ($history as $data)
                                 <tr>
-                                    <td>{{ $brand->customer_name }}</td>
-                                    <td>{{ $brand->brand_id }}</td>
-                                    <td>{{ $brand->brand_name }}</td>
+                                    <td>{{ $data->id }}</td>
+                                    <td>{{ $data->barang_id }}</td>
+                                    <td>{{ $data->barang }}</td>
+                                    <td>{{ $data->assigned_user }}</td>
+                                    <td>{{ $data->lokasi }}</td>
+                                    <td>{{ $data->by_user }}</td>
+                                    @if ($data->status == 'MASUK')
+                                        <td style="display: block; min-width:70px; text-align: center;">
+                                            <strong>
+                                                <p
+                                                    style="margin: auto; color: white; background-color: rgb(59, 206, 91);border-radius: 25px">
+                                                    {{ $data->status }}</p>
+                                            </strong>
+                                        </td>
+                                    @elseif ($data->status == 'KELUAR SEMUA')
+                                        <td style="display: block; text-align: center; min-width:70px;">
+                                            <strong>
+                                                <p
+                                                    style="margin: auto; color: white; background-color: rgb(130, 48, 177);border-radius: 25px">
+                                                    {{ $data->status }}</p>
+                                            </strong>
+                                        </td>
+                                    @elseif ($data->status == 'KELUAR SEBAGIAN')
+                                        <td style="display: block; text-align: center; min-width:70px;">
+                                            <strong>
+                                                <p
+                                                    style="margin: auto; color: white; background-color: rgb(226, 179, 69);border-radius: 25px">
+                                                    {{ $data->status }}</p>
+                                            </strong>
+                                        </td>
+                                    @elseif ($data->status == 'UPDATE')
+                                        <td style="display: block; text-align: center; min-width:70px;">
+                                            <strong>
+                                                <p
+                                                    style="margin: auto; color: white; background-color: rgb(55, 111, 189);border-radius: 25px">
+                                                    {{ $data->status }}</p>
+                                            </strong>
+                                        </td>
+                                    @elseif ($data->status == 'DELETE')
+                                        <td style="display: block; text-align: center; min-width:70px;">
+                                            <strong>
+                                                <p
+                                                    style="margin: auto; color: white; background-color: rgb(255, 69, 28);border-radius: 25px">
+                                                    {{ $data->status }}</p>
+                                            </strong>
+                                        </td>
+                                    @endif
                                     <td>
                                         <div class="d-flex justify-content-center">
-                                            <a style="cursor: pointer" data-target="#editModalCenter"
-                                                data-toggle="modal" data-brand_id="{{ $brand->brand_id }}"
-                                                data-brand_name="{{ $brand->brand_name }}">
-                                                <i class="fa fa-edit mt-3 text-primary"
+                                            <a href="/barang/history/detail/{{$data->id}}">
+                                                <i class="fa fa-info-circle mt-1 text-primary"
                                                     data-toggle="tooltip"
-                                                    data-original-title="Edit Brand"></i>
+                                                    data-original-title="Detail"></i>
                                             </a>
-                                            @if ($brand->item_exists == true)
-                                                <a class="ml-3 mb-2" style="cursor: pointer">
-                                                    <i class="fa fa-ban mt-3 text-danger"
-                                                        data-toggle="tooltip"
-                                                        data-original-title="Tidak bisa menghapus Brand karena sudah mempunyai Barang"></i>
-                                                </a>
-                                            @else
-                                                <a class="ml-3 mb-2" style="cursor: pointer"
-                                                    data-target="#deleteModal" data-toggle="modal"
-                                                    data-brand_name="{{ $brand->brand_name }}"
-                                                    data-brand_id="{{ $brand->brand_id }}"
-                                                    data-brand_id_enc="{{ encrypt($brand->brand_id) }}">
-                                                    <i class="fa fa-times mt-3 text-danger"
-                                                        data-toggle="tooltip"
-                                                        data-original-title="Hapus Brand"></i>
-                                                </a>
-                                            @endif
                                         </div>
                                     </td>
                                 </tr>
-                            @endforeach --}}
+                            @endforeach
                         </tbody>
                     </table>
                 </div>
