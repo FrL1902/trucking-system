@@ -50,7 +50,7 @@
                         <thead>
                             <tr>
                                 <th style="width: 16%">ID Masuk</th>
-                                <th>Kategori</th>
+                                <th>Lokasi</th>
                                 <th>Model</th>
                                 <th>Stok</th>
                                 <th>Keterangan</th>
@@ -61,7 +61,7 @@
                         <tfoot>
                             <tr>
                                 <th style="width: 16%">ID Masuk</th>
-                                <th>Kategori</th>
+                                <th>Lokasi</th>
                                 <th>Model</th>
                                 <th>Stok</th>
                                 <th>Keterangan</th>
@@ -73,7 +73,7 @@
                             @foreach ($barangMasuk as $data)
                                 <tr>
                                     <td>{{ $data->masuk_id }}</td>
-                                    <td>{{ $data->model_id }}</td>
+                                    <td>{{ $data->location_id }}</td>
                                     <td>{{ $data->model_id }}</td>
                                     <td>{{ $data->stok }}</td>
                                     <td>{{ $data->keterangan }}</td>
@@ -108,9 +108,9 @@
                                                     data-original-title="Edit Data"></i>
                                             </a>
                                             <a class="ml-3 mb-2" style="cursor: pointer"
-                                                data-target="#deleteModal" data-toggle="modal"
+                                                data-target="#deleteModalMasuk" data-toggle="modal"
                                                 data-brand_name="{{ $data->masuk_id }}"
-                                                data-brand_id="{{ $data->masuk_id }}">
+                                                data-model_name="{{ $data->model_id }}">
                                                 <i class="fa fa-times mt-3 text-danger"
                                                     data-toggle="tooltip"
                                                     data-original-title="Hapus Data"></i>
@@ -128,7 +128,7 @@
 </div>
 
 {{-- modal untuk delete brand --}}
-<div class="modal fade" id="deleteModal">
+<div class="modal fade" id="deleteModalMasuk">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
             <div class="modal-header">
@@ -505,6 +505,20 @@
 
 @section('script')
     <script>
+        // delete modal
+        $('#deleteModalMasuk').on('show.bs.modal', function(event) {
+            var button = $(event.relatedTarget)
+            var brand_name = button.data('brand_name')
+            var model_name = button.data('model_name')
+            var modal = $(this)
+
+
+            modal.find('.modal-title').text('HAPUS BARANG ' + '"' + brand_name + '"' )
+            modal.find('.modal-text').text('Apa anda yakin untuk menghapus data barang masuk "' + model_name + '" ?')
+            modal.find('.deleteBrand').attr('href', '/barang/masuk/delete/' + brand_name)
+
+        })
+
         // buat add pc
         $('#addModel').select2({
             dropdownParent: $('#addModalCenterPC'),
