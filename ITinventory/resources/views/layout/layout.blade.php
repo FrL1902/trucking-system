@@ -291,10 +291,10 @@
                             </span>
                             <h4 class="text-section">User</h4>
                         </li>
-                        <li class="nav-item @yield('historyItem')">
+                        <li class="nav-item @yield('user')">
                             <a href="/user">
                                 <i class="fas fa-user"></i>
-                                <p>Manage User</p>
+                                <p>Kelola User</p>
                             </a>
                         </li>
                     </ul>

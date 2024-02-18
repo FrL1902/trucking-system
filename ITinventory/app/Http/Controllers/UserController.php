@@ -28,13 +28,13 @@ class UserController extends Controller
     //     dd($request->userIdHidden);
     // }
 
-    public function makeUser(Request $request)
+    public function make_new_user(Request $request)
     {
+        dd(2);
         $request->validate([
-            'usernameform' => 'required|unique:App\Models\User,name|min:4|max:50',
-            'emailform' => 'required|unique:App\Models\User,email',
-            'passwordform' => 'required|min:6|max:20',
-            'optionsRadios' => 'required'
+            'name' => 'required|unique:App\Models\User,name|min:4|max:50',
+            'email' => 'required|unique:App\Models\User,email',
+            'password' => 'required|min:6|max:20',
         ], [
             'usernameform.unique' => 'Username sudah terambil, masukkan username yang berbeda',
             'usernameform.min' => 'Username minimal 4 karakter',
@@ -42,7 +42,6 @@ class UserController extends Controller
             'emailform.unique' => 'Email sudah terambil, masukkan email yang berbeda',
             'passwordform.min' => 'Password minimal 6 karakter',
             'passwordform.max' => 'Password maksimal 20 karakter',
-            'optionsRadios.required' => 'Kolom "Role" harus dipilih',
         ]);
 
         $account = new User();
@@ -54,19 +53,11 @@ class UserController extends Controller
 
         $account->save();
 
-        // if ($request->optionsRadios == "customer") {
-        //     $access = new UserAccess();
-        //     $access->user_id = $request->usernameform;
-        //     $access->customer_id = 0;
-        //     $access->save();
-        // }
 
         $userAdded = $request->usernameform . " [" . $request->optionsRadios . "] " . "berhasil di tambahkan";
         $request->session()->flash('sukses_add', $userAdded);
 
         return redirect()->back();
-
-        // return $request->input();
     }
 
     public function destroy($id)
