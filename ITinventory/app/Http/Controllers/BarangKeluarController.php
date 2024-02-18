@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Models\BarangKeluar;
 use App\Models\BarangMasuk;
+use App\Models\Category;
+use App\Models\CategoryStock;
+use App\Models\History;
 use App\Models\Location;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -74,6 +77,45 @@ class BarangKeluarController extends Controller
                     'stok' => $newValue,
                 ]);
             }
+
+
+            //buat history
+            // ini buat history
+            $lokasi = Location::find($request->lokasi_id);
+            $lokasi = $lokasi->lokasi;          ####
+
+            $model_data = CategoryStock::find( $barang_keluar->model_id);
+
+            $kategori = Category::find($model_data->category_id);
+            $kategori = $kategori->kategori;    #####
+
+            $model = $model_data->model_name;   #####
+            History::insert([
+                'barang_id' =>      $request->masuk_id,
+                'barang'    =>      'KELUAR',
+                'lokasi'    =>      $lokasi,
+                'by_user'   =>      auth()->user()->name, #### ganti ke auth,current user
+                'status'    =>      'MASUK',
+                'model'     =>      $model,
+                'kategori'  =>      $kategori,
+                'Processor' =>      ($barang_keluar->is_pc) ? $barang_keluar->Processor : '-',
+                'RAM' =>            ($barang_keluar->is_pc) ? $barang_keluar->RAM : '-',
+                'GPU' =>            ($barang_keluar->is_pc) ? $barang_keluar->GPU : '-',
+                'Storage' =>        ($barang_keluar->is_pc) ? $barang_keluar->Storage : '-',
+                'OS' =>             ($barang_keluar->is_pc) ? $barang_keluar->OS : '-',
+                'License' =>        ($barang_keluar->is_pc) ? $barang_keluar->License : '-',
+                'Monitor' =>        ($barang_keluar->is_pc) ? $barang_keluar->Monitor : '-',
+                'Keyboard' =>       ($barang_keluar->is_pc) ? $barang_keluar->Keyboard : '-',
+                'Mouse' =>          ($barang_keluar->is_pc) ? $barang_keluar->Mouse : '-',
+                'stok' =>           ($barang_keluar->is_pc) ? 1 : $request->stok,
+                'SN' =>             ($barang_keluar->SN) ? $barang_keluar->SN : '-',
+                'keterangan' =>     $request->keterangan,
+                'gambar1' =>        $imageName1,
+                'gambar2' =>        $imageName2,
+                'assigned_user' =>  '-',
+                'is_pc' =>          ($barang_keluar->is_pc) ? $barang_keluar->is_pc : false,
+                'created_at' =>     Carbon::now(),
+            ]);
         }
 
         return redirect()->back();

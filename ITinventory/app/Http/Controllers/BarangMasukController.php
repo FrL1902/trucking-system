@@ -87,7 +87,7 @@ class BarangMasukController extends Controller
                 'barang_id' =>      $request->barang_masuk_id,
                 'barang'    =>      'MASUK',
                 'lokasi'    =>      $lokasi,
-                'by_user'   =>      'tesADMIN', #### ganti ke auth,current user
+                'by_user'   =>      auth()->user()->name, #### ganti ke auth,current user
                 'status'    =>      'MASUK',
                 'model'     =>      $model,
                 'kategori'  =>      $kategori,
@@ -184,7 +184,7 @@ class BarangMasukController extends Controller
                 'barang_id' =>      $request->keluar_id,
                 'barang'    =>      'KELUAR',
                 'lokasi'    =>      $lokasi,
-                'by_user'   =>      'tesADMIN', #### ganti ke auth,current user
+                'by_user'   =>      auth()->user()->name, #### ganti ke auth,current user
                 'status'    =>      $status,
                 'model'     =>      $model,
                 'kategori'  =>      $kategori,
@@ -230,7 +230,7 @@ class BarangMasukController extends Controller
 
         CategoryStock::where('model_id', $barang_masuk->model_id)->update([
             'stok' => $stok,
-        ]); 
+        ]);
 
         // ini buat history
         $lokasi = Location::find($barang_masuk->location_id);
@@ -244,7 +244,7 @@ class BarangMasukController extends Controller
             'barang_id' =>      $barang_masuk->masuk_id,
             'barang'    =>      'MASUK',
             'lokasi'    =>      $lokasi,
-            'by_user'   =>      'tesADMIN', #### ganti ke auth,current user
+            'by_user'   =>      auth()->user()->name, #### ganti ke auth,current user
             'status'    =>      'DELETE',
             'model'     =>      $model,
             'kategori'  =>      $kategori,

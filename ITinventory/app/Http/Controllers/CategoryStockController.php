@@ -2,9 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\BarangKeluar;
+use App\Models\BarangMasuk;
 use App\Models\Category;
 use App\Models\CategoryStock;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Intervention\Image\ImageManager;
 use Intervention\Image\Drivers\Gd\Driver;
 
@@ -43,5 +46,13 @@ class CategoryStockController extends Controller
         }
 
         return redirect()->back();
+    }
+
+    public function model_detail_page($id){
+        $data = CategoryStock::where('model_id', $id)->first();
+        $barangMasuk = DB::table('barang_masuk')->where('model_id', $id)->get();
+        $barangKeluar = DB::table('barang_keluar')->where('model_id', $id)->get();
+
+        return view('barangmodeldetail', compact('data','barangMasuk', 'barangKeluar'));
     }
 }
