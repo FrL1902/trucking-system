@@ -32,7 +32,7 @@
                             aria-label="Disabled input example" disabled>
                     </div>
                     <div class="form-group">
-                        <label for="largeInput">barang_id</label>
+                        <label for="largeInput">Barang ID</label>
                         <input class="form-control" type="text" placeholder="{{ $detail->barang_id }}"
                             aria-label="Disabled input example" disabled>
                     </div>

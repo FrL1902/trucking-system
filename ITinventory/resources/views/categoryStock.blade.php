@@ -79,22 +79,33 @@
                                         </a>
                                     </td>
                                     <td>{{ Storage::url($data->gambar) }}</td> --}}
-                                    <td></td>
+                                    <td>
+                                        {{-- @if ($data->is_pc) --}}
+                                            {{-- <i class="fa fa-info-circle" aria-hidden="true"></i> --}}
+                                            <div class="d-flex justify-content-center">
+                                                <a href="/barang/model/detail/{{$data->model_id}}">
+                                                    <i class="fa fa-info-circle mt-1 text-primary"
+                                                        data-toggle="tooltip"
+                                                        data-original-title="Detail"></i>
+                                                </a>
+                                            </div>
+                                        {{-- @endif --}}
+                                    </td>
                                     <td>
                                         <div class="d-flex justify-content-center">
                                             <a style="cursor: pointer" data-target="#editModalCenter"
                                                 data-toggle="modal" data-brand_id="{{ $data->model_id }}"
                                                 data-brand_name="{{ $data->model_name }}">
-                                                <i class="fa fa-edit mt-3 text-primary"
+                                                <i class="fa fa-edit text-primary"
                                                     data-toggle="tooltip"
                                                     data-original-title="Edit Data"></i>
                                             </a>
-                                            <a class="ml-3 mb-2" style="cursor: pointer"
+                                            <a class="ml-3" style="cursor: pointer"
                                                 data-target="#deleteModal" data-toggle="modal"
                                                 data-brand_name="{{ $data->model_name }}"
                                                 data-brand_id="{{ $data->model_id }}"
                                                 data-brand_id_enc="{{ encrypt($data->model_id) }}">
-                                                <i class="fa fa-times mt-3 text-danger"
+                                                <i class="fa fa-times text-danger"
                                                     data-toggle="tooltip"
                                                     data-original-title="Hapus Data"></i>
                                             </a>
