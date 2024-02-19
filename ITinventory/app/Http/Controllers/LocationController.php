@@ -45,7 +45,7 @@ class LocationController extends Controller
         $location->alamat = $request->location_address;
         $location->save();
 
-        return redirect()->back();
+        return redirect()->back()->with('sukses_notif', 'Data Berhasil Di Tambahkan');
     }
 
     public function edit_location(Request $request)
@@ -67,7 +67,7 @@ class LocationController extends Controller
             'alamat' => $request->location_address,
         ]);
 
-        return redirect()->back();
+        return redirect()->back()->with('sukses_notif', 'Data Berhasil Di Ubah');
     }
 
     public function delete_location($id){

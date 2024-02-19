@@ -62,17 +62,17 @@
                                                 data-toggle="modal" data-brand_id="{{ $location->location_id }}"
                                                 data-brand_name="{{ $location->lokasi }}"
                                                 data-brand_alamat="{{ $location->alamat }}">
-                                                <i class="fa fa-edit mt-3 text-primary"
+                                                <i class="fa fa-edit text-primary"
                                                     data-toggle="tooltip"
                                                     data-original-title="Edit Data"></i>
                                             </a>
-                                            <a class="ml-3 mb-2" style="cursor: pointer"
+                                            <a class="ml-3" style="cursor: pointer"
                                                 data-target="#deleteModal" data-toggle="modal"
                                                 data-brand_name="{{ $location->lokasi }}"
                                                 data-brand_id="{{ $location->location_id }}"
                                                 data-brand_alamat="{{ $location->alamat }}"
                                                 data-brand_id_enc="{{ encrypt($location->location_id) }}">
-                                                <i class="fa fa-times mt-3 text-danger"
+                                                <i class="fa fa-times text-danger"
                                                     data-toggle="tooltip"
                                                     data-original-title="Hapus Data"></i>
                                             </a>
@@ -88,11 +88,12 @@
     </div>
 </div>
 
+
 <div class="modal fade" id="addModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h3 class="modal-title" id="exampleModalLabel" style="font-weight: bold">KATEGORI BARU</h3>
+                <h3 class="modal-title" id="exampleModalLabel" style="font-weight: bold">LOKASI BARU</h3>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
                 </button>
