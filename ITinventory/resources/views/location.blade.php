@@ -222,7 +222,7 @@
 
             modal.find('.modal-title').text('HAPUS LOKASI "' + brand_id + '"')
             modal.find('.modal-text').text('Apa anda yakin untuk menghapus lokasi "' + brand_name + '" ?')
-            modal.find('.deleteBrand').attr('href', '/deleteBrand/' + brand_id_enc)
+            modal.find('.deleteBrand').attr('href', '/deleteLocation/' + brand_id_enc)
 
         })
 
