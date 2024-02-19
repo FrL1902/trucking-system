@@ -45,7 +45,7 @@ class CategoryStockController extends Controller
             ]);
         }
 
-        return redirect()->back();
+        return redirect()->back()->with('sukses_notif', 'Data Berhasil Di Tambahkan');
     }
 
     public function model_detail_page($id){

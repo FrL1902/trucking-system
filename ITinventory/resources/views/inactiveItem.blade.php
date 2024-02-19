@@ -100,9 +100,7 @@
                                                     data-toggle="tooltip"
                                                     data-original-title="Assign Barang"></i>
                                             </a>
-                                            <a class="ml-3 mb-2" style="cursor: pointer" data-target="#editModalCenter"
-                                                data-toggle="modal" data-brand_id="{{ $data->masuk_id }}"
-                                                data-brand_name="{{ $data->masuk_id }}">
+                                            <a class="ml-3 mb-2" style="cursor: pointer" href="/barang/masuk/update/{{$data->masuk_id}}">
                                                 <i class="fa fa-edit mt-3 text-primary"
                                                     data-toggle="tooltip"
                                                     data-original-title="Edit Data"></i>
@@ -145,41 +143,6 @@
                     data-dismiss="modal">Tidak</button>
                 <a href="/deleteBrand/ttt" class="deleteBrand btn btn-danger">YAKIN
                 </a>
-            </div>
-        </div>
-    </div>
-</div>
-
-{{-- modal untuk update brand --}}
-<div class="modal fade" id="editModalCenter" tabindex="-1" role="dialog"
-    aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h3 class="modal-title" id="exampleModalLongTitle" style="font-weight: bold"></strong>
-                </h3>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <form method="post" action="/updateBrand">
-                    @csrf
-                    <div class="card-body">
-                        <div class="form-group">
-                            <label>Nama Brand</label>
-                            <input type="text" class="form-control brand_update_field"
-                                placeholder="masukkan nama brand" aria-label=""
-                                aria-describedby="basic-addon1" name="brandnameformupdate">
-                            <div class="card mt-5 ">
-                                <button id="" class="btn btn-primary">Update
-                                    Data Brand</button>
-                            </div>
-                        </div>
-                        <input type="hidden" class="form-control brandIdHidden" name="brandIdHidden"
-                            value="#">
-                    </div>
-                </form>
             </div>
         </div>
     </div>
@@ -334,7 +297,6 @@
         </div>
     </div>
 </div>
-
 
 {{-- add other asset --}}
 <div class="modal fade" id="addModalCenterOther" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">

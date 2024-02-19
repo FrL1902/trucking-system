@@ -71,9 +71,7 @@
                                     </td>
                                     <td>
                                         <div class="d-flex justify-content-center">
-                                            <a style="cursor: pointer" data-target="#editModalCenter"
-                                                data-toggle="modal" data-brand_id="{{ $data->keluar_id }}"
-                                                data-brand_name="{{ $data->keluar_id }}">
+                                            <a style="cursor: pointer" href="/barang/keluar/update/{{$data->keluar_id}}">
                                                 <i class="fa fa-edit text-primary"
                                                     data-toggle="tooltip"
                                                     data-original-title="Edit Data"></i>
@@ -94,29 +92,6 @@
                         </tbody>
                     </table>
                 </div>
-            </div>
-        </div>
-    </div>
-</div>
-
-{{-- modal untuk delete brand --}}
-<div class="modal fade" id="deleteModal">
-    <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h3 class="modal-title" id="exampleModalLabel" style="font-weight: bold"></h3>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <p class="modal-text"></p>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" id="close-modal"
-                    data-dismiss="modal">Tidak</button>
-                <a href="/deleteBrand/ttt" class="deleteBrand btn btn-danger">YAKIN
-                </a>
             </div>
         </div>
     </div>
@@ -157,118 +132,7 @@
     </div>
 </div>
 
-<div class="modal fade" id="deleteModal">
-    <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h3 class="modal-title" id="exampleModalLabel" style="font-weight: bold"></h3>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <p class="modal-text"></p>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" id="close-modal"
-                    data-dismiss="modal">Tidak</button>
-                <a href="/deleteBrand/ttt" class="deleteBrand btn btn-danger">YAKIN
-                </a>
-            </div>
-        </div>
-    </div>
-</div>
-
-<div class="modal fade" id="addModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-        <div class="modal-header">
-            <h3 class="modal-title" id="exampleModalLabel" style="font-weight: bold">KATEGORI BARU</h3>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-            </button>
-        </div>
-        <div class="modal-body">
-            <form>
-                <div class="form-group" style="padding:0">
-                    <label for="category_id" class="col-form-label" style="font-weight: bold; padding-bottom:0">ID Kategori<span style="color: red">*</span></label>
-                    <input type="text" class="form-control form-control" style="border-color: #aaaaaa"
-                        placeholder="KTG01" id="category_id"
-                        name="supplier">
-                </div>
-                <div class="form-group" style="padding:20px 0px 0px 0px">
-                    <label for="category_name" class="col-form-label" style="font-weight: bold; padding-bottom:0">Nama Kategori<span style="color: red">*</span></label>
-                    <input type="text" class="form-control form-control" style="border-color: #aaaaaa"
-                        placeholder="Komputer Rakitan" id="category_name"
-                        name="supplier">
-                </div>
-                <div class="form-group" style="padding:20px 0px 0px 0px">
-                    <label for="model_name" class="col-form-label" style="font-weight: bold; padding-bottom:0">Nama Model<span style="color: red">*</span></label>
-                    <input type="text" class="form-control form-control" style="border-color: #aaaaaa"
-                        placeholder="Lenovo 80SX" id="model_name"
-                        name="supplier">
-                </div>
-            </form>
-        </div>
-            <div class="modal-footer">
-                {{-- <button type="button" class="btn btn-secondary" data-dismiss="modal">Tidak</button> --}}
-                <button type="button" class="btn btn-primary">Insert Data</button>
-            </div>
-        </div>
-    </div>
-</div>
-
-{{-- ADD STOCK MODAL --}}
-<div class="modal fade" id="addModalCentera" tabindex="-1" role="dialog"
-aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h3 class="modal-title" id="exampleModalLongTitle">
-                    <strong>
-                        TAMBAHKAN KATEGORI BARU
-                    </strong>
-                </h3>
-                <button id="addIncomingClose" style="display:inline-block" type="button" class="close" data-dismiss="modal"
-                    aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <form enctype="multipart/form-data" method="post" action="/addItemStock">
-                @csrf
-                <div class="modal-body" style="padding:0">
-
-                    <div class="card-body">
-                        <div class="form-group">
-                            <label for="supplier" style="font-weight: bold">ID<span style="color: red">
-                                    *
-                                </span></label>
-                            <input type="text" class="form-control form-control-sm" style="border-color: #aaaaaa"
-                                placeholder="supplier barang" id="supplier"
-                                name="supplier">
-                        </div>
-
-                        <div class="form-group">
-                            <label for="supplier" style="font-weight: bold">Nama Kategori<span style="color: red">
-                                    *
-                                </span></label>
-                            <input type="text" class="form-control form-control-sm" style="border-color: #aaaaaa"
-                                placeholder="supplier barang" id="supplier"
-                                name="supplier">
-                        </div>
-                        <div class="form-group">
-                            <div class="modal-footer">
-                                <button class="btn btn-primary">Export
-                                    Data</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </form>
-        </div>
-    </div>
-</div>
-
+{{-- put items back in inventory, modal --}}
 <div class="modal fade" id="putBackModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">

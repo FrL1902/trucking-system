@@ -343,7 +343,7 @@ class BarangMasukController extends Controller
                 $minus = $data->stok - $request->stok;
                 $newStock = $Stock->stok - $minus;
             }
-            if($request->stok > $data->stok){
+            else if($request->stok > $data->stok){
                 $Stock = CategoryStock::find($data->model_id);
                 $added = $request->stok - $data->stok;
                 $newStock = $Stock->stok + $added;
