@@ -26,6 +26,24 @@ class BarangMasukController extends Controller
 
     public function add_new_barang_masuk(Request $request)
     {
+        $request->validate([
+            'masuk_id' => 'required|unique:App\Models\BarangMasuk,masuk_id|min:3|max:20|alpha_dash',
+            'gambar1' => 'required|mimes:jpeg,png,jpg|max:10240',
+            'gambar2' => 'required|mimes:jpeg,png,jpg|max:10240',
+        ], [
+            'masuk_id.required' => 'Kolom "ID Barang Masuk" Harus Diisi',
+            'masuk_id.unique' => '"ID Barang Masuk" yang diisi sudah terambil, masukkan ID yang lain',
+            'masuk_id.min' => '"ID Barang Masuk" minimal 3 karakter',
+            'masuk_id.max' => '"ID Barang Masuk" maksimal 20 karakter',
+            'masuk_id.alpha_dash' => '"ID Barang Masuk" hanya membolehkan huruf, angka, -, _ (spasi dan simbol lainnya tidak diterima)',
+            'gambar1.required' => 'Kolom "Gambar" harus diisi',
+            'gambar1.mimes' => 'Tipe foto yang diterima hanya jpeg, jpg, dan png',
+            'gambar1.max' => 'Ukuran foto harus dibawah 10 MB',
+            'gambar2.required' => 'Kolom "Gambar" harus diisi',
+            'gambar2.mimes' => 'Tipe foto yang diterima hanya jpeg, jpg, dan png',
+            'gambar2.max' => 'Ukuran foto harus dibawah 10 MB'
+        ]);
+
         if ($request->file('gambar1') && $request->file('gambar2')) {
             // gambar pertama
             $manager = new ImageManager(new Driver());
@@ -91,17 +109,17 @@ class BarangMasukController extends Controller
                 'status'    =>      'MASUK',
                 'model'     =>      $model,
                 'kategori'  =>      $kategori,
-                'Processor' =>      ($request->is_pc) ? $request->processor : '-',
-                'RAM' =>            ($request->is_pc) ? $request->ram : '-',
-                'GPU' =>            ($request->is_pc) ? $request->gpu : '-',
-                'Storage' =>        ($request->is_pc) ? $request->storage : '-',
-                'OS' =>             ($request->is_pc) ? $request->operating_system : '-',
-                'License' =>        ($request->is_pc) ? $request->license : '-',
-                'Monitor' =>        ($request->is_pc) ? $request->monitor : '-',
-                'Keyboard' =>       ($request->is_pc) ? $request->keyboard : '-',
-                'Mouse' =>          ($request->is_pc) ? $request->mouse : '-',
-                'stok' =>           ($request->is_pc) ? 1 : $request->stok,
-                'SN' =>             ($request->SN) ? $request->SN : '-',
+                'Processor' => ($request->is_pc) ? $request->processor : '-',
+                'RAM' => ($request->is_pc) ? $request->ram : '-',
+                'GPU' => ($request->is_pc) ? $request->gpu : '-',
+                'Storage' => ($request->is_pc) ? $request->storage : '-',
+                'OS' => ($request->is_pc) ? $request->operating_system : '-',
+                'License' => ($request->is_pc) ? $request->license : '-',
+                'Monitor' => ($request->is_pc) ? $request->monitor : '-',
+                'Keyboard' => ($request->is_pc) ? $request->keyboard : '-',
+                'Mouse' => ($request->is_pc) ? $request->mouse : '-',
+                'stok' => ($request->is_pc) ? 1 : $request->stok,
+                'SN' => ($request->SN) ? $request->SN : '-',
                 'keterangan' =>     $request->keterangan,
                 'gambar1' =>        $imageName1,
                 'gambar2' =>        $imageName2,
@@ -116,6 +134,24 @@ class BarangMasukController extends Controller
 
     public function assign_barang_masuk(Request $request)
     {
+        $request->validate([
+            'keluar_id' => 'required|unique:App\Models\BarangKeluar,keluar_id|min:3|max:20|alpha_dash',
+            'gambar1' => 'required|mimes:jpeg,png,jpg|max:10240',
+            'gambar2' => 'required|mimes:jpeg,png,jpg|max:10240',
+        ], [
+            'keluar_id.required' => 'Kolom "ID Barang Keluar" Harus Diisi',
+            'keluar_id.unique' => '"ID Barang Keluar" yang diisi sudah terambil, masukkan ID yang lain',
+            'keluar_id.min' => '"ID Barang Keluar" minimal 3 karakter',
+            'keluar_id.max' => '"ID Barang Keluar" maksimal 20 karakter',
+            'keluar_id.alpha_dash' => '"ID Barang Keluar" hanya membolehkan huruf, angka, -, _ (spasi dan simbol lainnya tidak diterima)',
+            'gambar1.required' => 'Kolom "Gambar" harus diisi',
+            'gambar1.mimes' => 'Tipe foto yang diterima hanya jpeg, jpg, dan png',
+            'gambar1.max' => 'Ukuran foto harus dibawah 10 MB',
+            'gambar2.required' => 'Kolom "Gambar" harus diisi',
+            'gambar2.mimes' => 'Tipe foto yang diterima hanya jpeg, jpg, dan png',
+            'gambar2.max' => 'Ukuran foto harus dibawah 10 MB'
+        ]);
+
         if ($request->file('gambar1') && $request->file('gambar2')) {
             $barang_masuk = BarangMasuk::find($request->barang_id);
             // dd($barang_masuk->is_pc);
@@ -206,7 +242,6 @@ class BarangMasukController extends Controller
                 'is_pc' => ($barang_masuk->is_pc) ? $barang_masuk->is_pc : false,
                 'created_at' =>     Carbon::now(),
             ]);
-
         }
 
         return redirect()->back()->with('sukses_notif', 'Data Berhasil Di Assign/Keluarkan');
@@ -320,30 +355,29 @@ class BarangMasukController extends Controller
         }
 
         BarangMasuk::where('masuk_id', $request->masuk_id)->update([
-            'Processor' =>      ($data->is_pc) ? $request->processor : '-',
-            'RAM' =>            ($data->is_pc) ? $request->ram : '-',
-            'GPU' =>            ($data->is_pc) ? $request->gpu : '-',
-            'Storage' =>        ($data->is_pc) ? $request->storage : '-',
-            'OS' =>             ($data->is_pc) ? $request->operating_system : '-',
-            'License' =>        ($data->is_pc) ? $request->license : '-',
-            'Monitor' =>        ($data->is_pc) ? $request->monitor : '-',
-            'Keyboard' =>       ($data->is_pc) ? $request->keyboard : '-',
-            'Mouse' =>          ($data->is_pc) ? $request->mouse : '-',
+            'Processor' => ($data->is_pc) ? $request->processor : '-',
+            'RAM' => ($data->is_pc) ? $request->ram : '-',
+            'GPU' => ($data->is_pc) ? $request->gpu : '-',
+            'Storage' => ($data->is_pc) ? $request->storage : '-',
+            'OS' => ($data->is_pc) ? $request->operating_system : '-',
+            'License' => ($data->is_pc) ? $request->license : '-',
+            'Monitor' => ($data->is_pc) ? $request->monitor : '-',
+            'Keyboard' => ($data->is_pc) ? $request->keyboard : '-',
+            'Mouse' => ($data->is_pc) ? $request->mouse : '-',
             'SN' =>             $request->SN,
-            'stok'=>            ($data->is_pc) ? 1 : $request->stok, #NI ngecek kalo ada SN ato ngga, kalo ngga ya diganti jadi -
+            'stok' => ($data->is_pc) ? 1 : $request->stok, #NI ngecek kalo ada SN ato ngga, kalo ngga ya diganti jadi -
             'gambar1' =>        $data_gambar1,
             'gambar2' =>        $data_gambar2,
             'keterangan' =>     $request->keterangan,
             'updated_at' =>     Carbon::now(),
         ]);
 
-        if(!$data->is_pc){
-            if($request->stok < $data->stok){
+        if (!$data->is_pc) {
+            if ($request->stok < $data->stok) {
                 $Stock = CategoryStock::find($data->model_id);
                 $minus = $data->stok - $request->stok;
                 $newStock = $Stock->stok - $minus;
-            }
-            else if($request->stok > $data->stok){
+            } else if ($request->stok > $data->stok) {
                 $Stock = CategoryStock::find($data->model_id);
                 $added = $request->stok - $data->stok;
                 $newStock = $Stock->stok + $added;
@@ -374,22 +408,22 @@ class BarangMasukController extends Controller
             'status'    =>      'UPDATE',
             'model'     =>      $model,
             'kategori'  =>      $kategori,
-            'Processor' =>      ($barang_masuk->is_pc) ? $request->processor : '-',
-            'RAM' =>            ($barang_masuk->is_pc) ? $request->ram : '-',
-            'GPU' =>            ($barang_masuk->is_pc) ? $request->gpu : '-',
-            'Storage' =>        ($barang_masuk->is_pc) ? $request->storage : '-',
-            'OS' =>             ($barang_masuk->is_pc) ? $request->operating_system : '-',
-            'License' =>        ($barang_masuk->is_pc) ? $request->license : '-',
-            'Monitor' =>        ($barang_masuk->is_pc) ? $request->monitor : '-',
-            'Keyboard' =>       ($barang_masuk->is_pc) ? $request->keyboard : '-',
-            'Mouse' =>          ($barang_masuk->is_pc) ? $request->mouse : '-',
-            'stok' =>           ($barang_masuk->is_pc) ? 1 : $request->stok, ### REQUEST STOK
+            'Processor' => ($barang_masuk->is_pc) ? $request->processor : '-',
+            'RAM' => ($barang_masuk->is_pc) ? $request->ram : '-',
+            'GPU' => ($barang_masuk->is_pc) ? $request->gpu : '-',
+            'Storage' => ($barang_masuk->is_pc) ? $request->storage : '-',
+            'OS' => ($barang_masuk->is_pc) ? $request->operating_system : '-',
+            'License' => ($barang_masuk->is_pc) ? $request->license : '-',
+            'Monitor' => ($barang_masuk->is_pc) ? $request->monitor : '-',
+            'Keyboard' => ($barang_masuk->is_pc) ? $request->keyboard : '-',
+            'Mouse' => ($barang_masuk->is_pc) ? $request->mouse : '-',
+            'stok' => ($barang_masuk->is_pc) ? 1 : $request->stok, ### REQUEST STOK
             'SN' =>             $request->SN,
             'keterangan' =>     $request->keterangan,
             'gambar1' =>        $data_gambar1,
             'gambar2' =>        $data_gambar2,
             'assigned_user' =>  '-',
-            'is_pc' =>          ($barang_masuk->is_pc) ? $barang_masuk->is_pc : false,
+            'is_pc' => ($barang_masuk->is_pc) ? $barang_masuk->is_pc : false,
             'created_at' =>     Carbon::now(),
         ]);
 

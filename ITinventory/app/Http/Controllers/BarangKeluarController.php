@@ -27,6 +27,23 @@ class BarangKeluarController extends Controller
     }
 
     public function simpan_barang_keluar(Request $request){
+        $request->validate([
+            'masuk_id' => 'required|unique:App\Models\BarangMasuk,masuk_id|min:3|max:20|alpha_dash',
+            'gambar1' => 'required|mimes:jpeg,png,jpg|max:10240',
+            'gambar2' => 'required|mimes:jpeg,png,jpg|max:10240',
+        ], [
+            'masuk_id.required' => 'Kolom "ID Barang Masuk" Harus Diisi',
+            'masuk_id.unique' => '"ID Barang Masuk" yang diisi sudah terambil, masukkan ID yang lain',
+            'masuk_id.min' => '"ID Barang Masuk" minimal 3 karakter',
+            'masuk_id.max' => '"ID Barang Masuk" maksimal 20 karakter',
+            'masuk_id.alpha_dash' => '"ID Barang Masuk" hanya membolehkan huruf, angka, -, _ (spasi dan simbol lainnya tidak diterima)',
+            'gambar1.required' => 'Kolom "Gambar" harus diisi',
+            'gambar1.mimes' => 'Tipe foto yang diterima hanya jpeg, jpg, dan png',
+            'gambar1.max' => 'Ukuran foto harus dibawah 10 MB',
+            'gambar2.required' => 'Kolom "Gambar" harus diisi',
+            'gambar2.mimes' => 'Tipe foto yang diterima hanya jpeg, jpg, dan png',
+            'gambar2.max' => 'Ukuran foto harus dibawah 10 MB'
+        ]);
 
         if ($request->file('gambar1') && $request->file('gambar2')) {
             $barang_keluar = BarangKeluar::find($request->barang_id);
