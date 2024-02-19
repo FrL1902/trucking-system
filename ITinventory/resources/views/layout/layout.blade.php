@@ -304,12 +304,29 @@
         <div class="main-panel">
             <div class="content">
                 <div class="page-inner">
+                    @if (session('sukses_notif'))
+                        <div class="alert alert-success alert-block" id="alertSuccess">
+                            <button type="button" class="close" data-dismiss="alert">×</button>
+                            <strong>{{ session('sukses_notif') }}</strong>
+                        </div>
+                    @elseif (session('gagal_notif'))
+                        <div class="alert alert-danger alert-block" id="alertFailed">
+                            <button type="button" class="close" data-dismiss="alert">×</button>
+                            <strong>Gagal: {{ session('gagal_notif') }}</strong>
+                        </div>
+                    @elseif ($errors->any())
+                        <div class="alert alert-danger alert-block" id="alertFailed">
+                            <button type="button" class="close" data-dismiss="alert">×</button>
+                            <strong>Gagal: {{ $errors->first() }}</strong>
+                        </div>
+                    @endif
                     @yield('content')
                 </div>
             </div>
         </div>
-        {{-- @include('sweetalert::alert') --}}
     </div>
+
+
     <!--   Core JS Files   -->
     <script src="/assets/js/core/jquery.3.2.1.min.js"></script>
     <script src="/assets/js/core/popper.min.js"></script>
