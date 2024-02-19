@@ -58,16 +58,16 @@
                                             <a style="cursor: pointer" data-target="#editModalCenter"
                                                 data-toggle="modal" data-brand_id="{{ $category->category_id }}"
                                                 data-brand_name="{{ $category->kategori }}">
-                                                <i class="fa fa-edit mt-3 text-primary"
+                                                <i class="fa fa-edit text-primary"
                                                     data-toggle="tooltip"
                                                     data-original-title="Edit Data"></i>
                                             </a>
-                                            <a class="ml-3 mb-2" style="cursor: pointer"
+                                            <a class="ml-3" style="cursor: pointer"
                                                 data-target="#deleteModal" data-toggle="modal"
                                                 data-brand_name="{{ $category->kategori }}"
                                                 data-brand_id="{{ $category->category_id }}"
                                                 data-brand_id_enc="{{ encrypt($category->category_id) }}">
-                                                <i class="fa fa-times mt-3 text-danger"
+                                                <i class="fa fa-times text-danger"
                                                     data-toggle="tooltip"
                                                     data-original-title="Hapus Data"></i>
                                             </a>
@@ -171,13 +171,13 @@
                         <label for="category_id" class="col-form-label" style="font-weight: bold; padding-bottom:0">ID Kategori<span style="color: red">*</span></label>
                         <input type="text" class="form-control form-control" style="border-color: #aaaaaa"
                             placeholder="KTG01" id="category_id"
-                            name="category_id">
+                            name="category_id" required>
                     </div>
                     <div class="form-group" style="padding:20px 0px 0px 0px">
                         <label for="category_name" class="col-form-label" style="font-weight: bold; padding-bottom:0">Nama Kategori<span style="color: red">*</span></label>
                         <input type="text" class="form-control form-control" style="border-color: #aaaaaa"
                             placeholder="Komputer Rakitan" id="category_name"
-                            name="category_name">
+                            name="category_name" required>
                     </div>
                 </div>
                 <div class="modal-footer">
@@ -203,7 +203,7 @@
 
             modal.find('.modal-title').text('HAPUS KATEGORI "' + brand_id + '"')
             modal.find('.modal-text').text('Apa anda yakin untuk menghapus kategori "' + brand_name + '" ?')
-            modal.find('.deleteBrand').attr('href', '/deleteBrand/' + brand_id_enc)
+            modal.find('.deleteBrand').attr('href', '/deleteCategory/' + brand_id_enc)
 
         })
 
