@@ -30,7 +30,6 @@ Route::post('/login', [AuthController::class, 'cek_login']);
 Route::get('/user', [UserController::class, 'manage_user_page'])->middleware('role:auth');
 Route::post('/user/new', [UserController::class, 'make_new_user'])->middleware('role:auth');
 Route::get('/deleteUser/{id}', [UserController::class, 'destroy']);
-Route::post('/tex',            [UserController::class, 'tex']);
 Route::post('/newPasswordFromAdmin', [UserController::class, 'newPasswordFromAdmin']);
 
 

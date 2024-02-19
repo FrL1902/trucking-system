@@ -30,34 +30,30 @@ class UserController extends Controller
 
     public function make_new_user(Request $request)
     {
-        dd(2);
+        // dd(2);
         $request->validate([
             'name' => 'required|unique:App\Models\User,name|min:4|max:50',
             'email' => 'required|unique:App\Models\User,email',
             'password' => 'required|min:6|max:20',
         ], [
-            'usernameform.unique' => 'Username sudah terambil, masukkan username yang berbeda',
-            'usernameform.min' => 'Username minimal 4 karakter',
-            'usernameform.max' => 'Username maksimal 50 karakter',
-            'emailform.unique' => 'Email sudah terambil, masukkan email yang berbeda',
-            'passwordform.min' => 'Password minimal 6 karakter',
-            'passwordform.max' => 'Password maksimal 20 karakter',
+            'name.unique' => 'Nama sudah terambil, masukkan nama yang berbeda',
+            'name.min' => 'Nama minimal 4 karakter',
+            'name.max' => 'Nama maksimal 50 karakter',
+            'email.unique' => 'Email sudah terambil, masukkan email yang berbeda',
+            'email.min' => 'Password minimal 6 karakter',
+            'password.min' => 'Password maksimal 6 karakter',
+            'password.max' => 'Password maksimal 20 karakter',
         ]);
 
-        $account = new User();
-        $account->name = $request->usernameform;
-        $account->email = $request->emailform;
-        $account->level = $request->optionsRadios;
-        $account->password = Hash::make($request->passwordform);
-        $account->pass = $request->passwordform;
 
-        $account->save();
+        $data = new User();
+        $data->email = $request->email;
+        $data->name = $request->name;
+        $data->password = Hash::make($request->password);
+        $data->pass = $request->password;
+        $data->save();
 
-
-        $userAdded = $request->usernameform . " [" . $request->optionsRadios . "] " . "berhasil di tambahkan";
-        $request->session()->flash('sukses_add', $userAdded);
-
-        return redirect()->back();
+        return redirect()->back()->with('sukses_notif', 'User Baru Berhasil Dibuat');
     }
 
     public function destroy($id)
@@ -67,11 +63,7 @@ class UserController extends Controller
         } catch (DecryptException $e) {
             abort(403);
         }
-
         $user = User::find($decrypted);
-
-        DB::table('user_permissions')->where('name', $user->name)->delete();
-        DB::table('user_accesses')->where('user_id', $user->name)->delete();
 
         $deletedUser = $user->name;
 
@@ -79,62 +71,39 @@ class UserController extends Controller
 
         $userDeleted = "User" . " \"" . $deletedUser . "\" " . "berhasil di hapus";
 
-        session()->flash('sukses_delete', $userDeleted);
-
-        return redirect()->back();
-    }
-
-
-    public function tex(Request $request)
-    {
-        $userInfo = User::where('email', $request->userIdHidden)->first();
-        $oldUsername = $userInfo->name;
-
-        $request->validate([
-            'usernameformupdate' => 'required|unique:App\Models\User,name|min:4|max:16',
-        ]);
-
-        User::where('email', $request->userIdHidden)->update([
-            'name' => $request->usernameformupdate,
-        ]);
-
-        $request->session()->flash('sukses_editUser', $oldUsername);
+        session()->flash('sukses_notif', $userDeleted);
 
         return redirect()->back();
     }
 
     public function newPasswordFromAdmin(Request $request)
     {
-        // $tes = User::where('id', 321)->first();
-        // dd('masok cok');
-        // dd(is_null($tes));
-        // dd($request->userIdHidden);
-
-        $getUser = User::where('id', $request->userIdHidden)->first();
-
-        // dd($getUser->name);
+        $getUser = User::where('email', $request->email_Hidden)->first();
 
         if ($request->changePassword === $request->changePassword2) {
         } else {
-            $request->session()->flash('passwordInputDifferent', 'Update Gagal: password baru harus sesuai di kedua kolom');
+            $request->session()->flash('gagal_notif', 'password baru harus sesuai di kedua kolom');
             return redirect()->back();
         }
 
         // validasi panjang karakter password
         $request->validate([
             'changePassword' => 'min:6|max:20',
+        ], [
+            'changePassword.min' => 'Password maksimal 6 karakter',
+            'changePassword.max' => 'Password maksimal 20 karakter',
         ]);
 
         // validasi password baru tidak boleh sama dari password lama
-        if (Hash::check($request->changePassword, $getUser->password)) { //mungkin ganti ke bcrypt kali yak
-            $request->session()->flash('passwordSameOld', 'Update Gagal: password baru harus berbeda dari password lama');
+        if (Hash::check($request->changePassword, $getUser->pass)) { //mungkin ganti ke bcrypt kali yak
+            $request->session()->flash('gagal_notif', 'password baru harus berbeda dari password lama');
             return redirect()->back();
         } else {
-            User::where('id',  $getUser->id)->update([
+            User::where('email',  $getUser->email)->update([
                 'password' => Hash::make($request->changePassword),
                 'pass' => $request->changePassword,
             ]);
-            $request->session()->flash('passwordUpdated', 'Update Berhasil: password berhasil diubah');
+            $request->session()->flash('sukses_notif', 'password berhasil diubah');
             return redirect()->back();
         }
     }
