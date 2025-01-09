@@ -1,4 +1,4 @@
-## About This [Laravel 8](Image Intervention v3](https://image.intervention.io/v3) Project
+## About This [Laravel 8](https://laravel.com/docs/8.x/releases) Project
 
 This is a Web Based Inventory Management System that I built for a logistic company as a project when I was an intern. 
 
