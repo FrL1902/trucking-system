@@ -362,7 +362,7 @@
 
 
             modal.find('.modal-title').text('HAPUS SPARE PART')
-            modal.find('.modal-text').text('Apa anda yakin untuk menghapus data Spare Part "' + brand_name + '" ?')
+            modal.find('.modal-text').text('Apa anda yakin untuk menghapus data Spare Part?')
             modal.find('.deleteBrand').attr('href', '/deleteCategory/' + brand_id_enc)
 
         })

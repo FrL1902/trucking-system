@@ -548,8 +548,8 @@
             var modal = $(this)
 
 
-            modal.find('.modal-title').text('HAPUS TRUK "' + brand_id + '"')
-            modal.find('.modal-text').text('Apa anda yakin untuk menghapus data truk "' + brand_name + '" ?')
+            modal.find('.modal-title').text('HAPUS TRUK')
+            modal.find('.modal-text').text('Apa anda yakin untuk menghapus data truk?')
             modal.find('.deleteBrand').attr('href', '/deleteCategory/' + brand_id_enc)
 
         })
