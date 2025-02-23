@@ -181,8 +181,6 @@
                                     </div>
                                 </li>
                                 <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="#">Change
-                                    Password</a>
                                 <a class="dropdown-item" href="/logout">Logout</a>
                         </li>
                     </ul>
