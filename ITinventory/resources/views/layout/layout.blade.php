@@ -3,7 +3,7 @@
 
 <head>
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <title>Inventory System</title>
+    <title>Trucking System</title>
     <meta content='width=device-width, initial-scale=1.0, shrink-to-fit=no' name='viewport' />
     {{-- <link rel="icon" href="/assets/img/icon.ico" type="image/x-icon" /> --}}
     {{-- bawah ini buat ganti icon di bar atas web --}}
@@ -130,13 +130,13 @@
     Tip 1: You can change the background color of the main header using: data-background-color="blue | purple | light-blue | green | orange | red"
   -->
 
-        <div class="main-header" data-background-color="orange">
+        <div class="main-header" data-background-color="blue">
             <!-- Logo Header -->
             <div class="logo-header">
 
                 <a href="#" class="logo text-center">
                     {{-- <img src="/assets/img/logoazzara.svg" alt="navbar brand" class="navbar-brand"> --}}
-                    <h2 alt="navbar brand" class="navbar-brand font-weight-bold" style="color: white">IT Inventory</h2>
+                    <h2 alt="navbar brand" class="navbar-brand font-weight-bold" style="color: white">Trucking System</h2>
                 </a>
                 <button class="navbar-toggler sidenav-toggler ml-auto" type="button" data-toggle="collapse"
                     data-target="collapse" aria-expanded="false" aria-label="Toggle navigation">
@@ -157,27 +157,7 @@
             <nav class="navbar navbar-header navbar-expand-lg">
 
                 <div class="container-fluid">
-                    {{-- <div class="collapse" id="search-nav">
-                        <form class="navbar-left navbar-form nav-search mr-md-3">
-                            <div class="input-group">
-                                <div class="input-group-prepend">
-                                    <button type="submit" class="btn btn-search pr-1">
-                                        <i class="fa fa-search search-icon"></i>
-                                    </button>
-                                </div>
-                                <input type="text" placeholder="Search ..." class="form-control">
-                            </div>
-                        </form>
-                    </div> --}}
                     <ul class="navbar-nav topbar-nav ml-md-auto align-items-center">
-                        {{-- <li class="nav-item toggle-nav-search hidden-caret">
-                            <a class="nav-link" data-toggle="collapse" href="#search-nav" role="button"
-                                aria-expanded="false" aria-controls="search-nav">
-                                <i class="fa fa-search"></i>
-                            </a>
-                        </li> --}}
-                        {{-- clock in navbar --}}
-                        {{-- <span id='ct'></span> --}}
                         <div id="time" class="d-flex p-2" style="color: white; font-weight:bold"></div>
 
 
@@ -195,22 +175,14 @@
                                         <div class="avatar-lg"><img src="../../assets/img/552721 user logo.png"
                                                 alt="image profile" class="avatar-img rounded"></div>
                                         <div class="u-text mt-2">
-                                            {{-- <h4>{{ auth()->user()->name }}</h4> --}}
                                             <h4>name</h4>
-                                            {{-- <p class="text-muted">{{ auth()->user()->email }}</p> --}}
                                             <p class="text-muted">email</p>
-                                            {{-- <a href="profile.html"
-                                                class="btn btn-rounded btn-danger btn-sm">View Profile</a> --}}
                                         </div>
                                     </div>
                                 </li>
-                                {{-- <li>auth()->user()->id --}}
                                 <div class="dropdown-divider"></div>
-                                {{-- <a class="dropdown-item" href="/creds/{{ auth()->user()->id }}">Change Password</a> --}}
-                                {{-- <a class="dropdown-item" href="/creds/{{ Crypt::encryptString(auth()->user()->id) }}">Change Password</a> --}}
                                 <a class="dropdown-item" href="#">Change
                                     Password</a>
-                                {{-- <div class="dropdown-divider"></div> --}}
                                 <a class="dropdown-item" href="/logout">Logout</a>
                         </li>
                     </ul>
@@ -234,9 +206,8 @@
                         <div class="info">
                             <a data-toggle="collapse" aria-expanded="true">
                                 <span>
-                                    {{-- {{ auth()->user()->name }} --}}te
-                                    {{-- <span class="user-level">Role: {{ auth()->user()->level }}</span> --}}
-                                    <span class="user-level">Role: asdfsf</span>
+                                    User: Admin
+                                    <span class="user-level">Role: Admin</span>
                                 </span>
                             </a>
                             <div class="clearfix"></div>
@@ -250,51 +221,27 @@
                             </a>
                         </li>
                         <li class="nav-item @yield('category')">
-                            <a href="/kategori">
-                                <i class="fas fa-tags"></i>
-                                <p>Kategori</p>
+                            <a href="/trucks">
+                                <i class="fa fa-truck"></i>
+                                <p>Trucks / Kategori</p>
                             </a>
                         </li>
                         <li class="nav-item @yield('location')">
-                            <a href="/lokasi">
-                                <i class="fas fa-map-marker"></i>
-                                <p>Lokasi</p>
+                            <a href="/drivers">
+                                <i class="fas fa-user"></i>
+                                <p>Drivers / Lokasi</p>
                             </a>
                         </li>
                         <li class="nav-item @yield('categoryStock')">
-                            <a href="/barang/stok">
+                            <a href="/parts">
                                 <i class="fa fa-clone"></i>
-                                <p>Data Barang</p>
+                                <p>Spare Parts</p>
                             </a>
                         </li>
                         <li class="nav-item @yield('inactiveItem')">
-                            <a href="/barang/masuk">
-                                <i class="fa fa-archive"></i>
-                                <p>Barang Masuk</p>
-                            </a>
-                        </li>
-                        <li class="nav-item @yield('activeItem')">
-                            <a href="/barang/keluar">
-                                <i class="fa fa-arrow-right"></i>
-                                <p>Barang Keluar</p>
-                            </a>
-                        </li>
-                        <li class="nav-item @yield('historyItem')">
-                            <a href="/barang/history">
-                                <i class="fa fa-history"></i>
-                                <p>Sejarah Barang</p>
-                            </a>
-                        </li>
-                        <li class="nav-section">
-                            <span class="sidebar-mini-icon">
-                                <i class="fa fa-ellipsis-h"></i>
-                            </span>
-                            <h4 class="text-section">User</h4>
-                        </li>
-                        <li class="nav-item @yield('user')">
-                            <a href="/user">
-                                <i class="fas fa-user"></i>
-                                <p>Kelola User</p>
+                            <a href="/about">
+                                <i class="fa fa-question-circle"></i>
+                                <p>About This Site</p>
                             </a>
                         </li>
                     </ul>

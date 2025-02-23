@@ -9,11 +9,11 @@ use Illuminate\Http\Request;
 
 class CategoryController extends Controller
 {
-    public function show_category_page()
+    public function show_trucks_page()
     {
         $category = Category::all();
 
-        return view('category', compact('category'));
+        return view('truck', compact('category'));
     }
 
     public function add_new_category(Request $request)
