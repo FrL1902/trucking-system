@@ -27,7 +27,7 @@
                     <div class="col col-stats ml-3 ml-sm-0">
                         <div class="numbers">
                             <p class="card-category">Drivers Available</p>
-                            <h4 class="card-title">25/40</h4>
+                            <h4 class="card-title">7/10</h4>
                         </div>
                     </div>
                 </div>
