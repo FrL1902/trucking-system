@@ -1,6 +1,6 @@
-## About This [Laravel 9](https://laravel.com/docs/8.x/releases) Project
+## About This [Laravel 8](https://laravel.com/docs/8.x/releases) Project
 
-This is a web based truck management system built for an interview test.
+This is a web-based truck management system built for an interview test.
 
 The purpose of this project is to demonstrate a proof of concept.
 
