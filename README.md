@@ -16,3 +16,14 @@ There are no backends on this website other than the login.
 - gd
 - pdo_pgsql (if using PostgreSQL)
 - pgsql (if using PostgreSQL)
+
+
+Here are the other files if needed
+
+https://drive.google.com/file/d/1TWbi6QvsHg4XByjyy50Wp3c48EOdbm1o/view?usp=sharing cv
+
+https://drive.google.com/file/d/12aHB56rO_0M1-fg5Y-KY49EHgGCSKdA-/view?usp=sharing Proposal
+
+https://drive.google.com/file/d/1zJr1HrsgKVPvW654tFgUFdST30_i5ACm/view?usp=sharing System Design (UI and how to run)
+
+https://github.com/FrL1902/trucking-system
