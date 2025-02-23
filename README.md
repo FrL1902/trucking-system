@@ -1,15 +1,10 @@
-## About This [Laravel 8](https://laravel.com/docs/8.x/releases) Project
+## About This [Laravel 9](https://laravel.com/docs/8.x/releases) Project
 
-This Web Application is built on top of already made Inventory Management System from [this repository](https://github.com/FrL1902/Inventory-Management-System)
+This is a web based truck management system built for an interview test.
 
-This is a Web Based IT Management System that I built for a logistic company as a project when I was an intern. 
+The purpose of this project is to demonstrate a proof of concept.
 
-The purpose of this Web Application is to keep track of ALL IT assets in the company. This Web application is only meant to be used by the IT department of the company
-
-The project is built in the newest version of Laravel 8 and uses these external packages:
-- [Image Intervention v3](https://image.intervention.io/v3)
-- [Laravel Excel](https://docs.laravel-excel.com/3.1/getting-started/installation.html)
-- [Laravel Debugbar](https://github.com/barryvdh/laravel-debugbar)
+There are no backends on this website other than the login.
 
 ## Requirements For This Project To Run
 
