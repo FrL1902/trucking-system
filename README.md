@@ -4,6 +4,9 @@ This is a web-based truck management system built for an interview test.
 
 The purpose of this project is to demonstrate a proof of concept.
 
+email is: admin@gmail.com
+password is: admin
+
 There are no backends on this website other than the login.
 
 ## Requirements For This Project To Run
