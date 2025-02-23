@@ -4,7 +4,7 @@
 
 @section('inactiveItem', 'active')
 <div class="page-header">
-    <h4 class="page-title">BARANG MASUK</h4>
+    <h4 class="page-title">About</h4>
     <ul class="breadcrumbs">
         <li class="nav-home">
             <i class="flaticon-home"></i>
@@ -13,7 +13,7 @@
             <i class="flaticon-right-arrow"></i>
         </li>
         <li class="separator">
-            <a>Barang Masuk</a>
+            <a>About This Project</a>
         </li>
     </ul>
 </div>

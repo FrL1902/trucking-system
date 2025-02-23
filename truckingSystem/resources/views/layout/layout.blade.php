@@ -223,13 +223,13 @@
                         <li class="nav-item @yield('category')">
                             <a href="/trucks">
                                 <i class="fa fa-truck"></i>
-                                <p>Trucks / Kategori</p>
+                                <p>Trucks</p>
                             </a>
                         </li>
                         <li class="nav-item @yield('location')">
                             <a href="/drivers">
                                 <i class="fas fa-user"></i>
-                                <p>Drivers / Lokasi</p>
+                                <p>Drivers</p>
                             </a>
                         </li>
                         <li class="nav-item @yield('categoryStock')">

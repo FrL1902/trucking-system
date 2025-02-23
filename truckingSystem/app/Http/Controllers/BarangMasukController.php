@@ -17,7 +17,6 @@ class BarangMasukController extends Controller
 {
     public function show_about_page()
     {
-        // dd('masuk');
-        return view('inactiveItem');
+        return view('about');
     }
 }

@@ -36,16 +36,18 @@
                     <table id="add-row" class="display table table-striped table-hover">
                         <thead>
                             <tr>
-                                <th style="width: 16%">ID Kategori</th>
-                                <th>Nama Kategori</th>
+                                <th style="width: 16%">Plat Nomor</th>
+                                <th>Truk</th>
+                                <th>Status</th>
                                 <th style="width: 6%">Edit</th>
                             </tr>
                         </thead>
                         <tfoot>
                             <tr>
-                                <th>ID Kategori</th>
-                                <th>Nama Kategori</th>
-                                <th>Edit</th>
+                                <th style="width: 16%">Plat Nomor</th>
+                                <th>Truk</th>
+                                <th>Status</th>
+                                <th style="width: 6%">Edit</th>
                             </tr>
                         </tfoot>
                     </table>

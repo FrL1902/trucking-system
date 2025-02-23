@@ -15,9 +15,6 @@ class CategoryStockController extends Controller
 {
     public function show_parts_page()
     {
-        $category = Category::all();
-        $categoryStock = CategoryStock::all();
-
-        return view('categoryStock', compact('category', 'categoryStock'));
+        return view('spare');
     }
 }
